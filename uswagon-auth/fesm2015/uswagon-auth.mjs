@@ -56,7 +56,12 @@ class UswagonAuthService {
                         try {
                             const regex = new RegExp(validator);
                             const isValid = regex.test(value);
-                            this.authForm[key].error = `${key.charAt(0).toUpperCase() + key.slice(1)} is not a valid input.`;
+                            if (!isValid) {
+                                this.authForm[key].error = `${key.charAt(0).toUpperCase() + key.slice(1)} is not a valid input.`;
+                            }
+                            else {
+                                this.authForm[key].error = undefined;
+                            }
                             return;
                         }
                         catch (_a) {
@@ -171,15 +176,15 @@ class UswagonLoginButtonComponent {
         this.API = API;
         this.class = '';
     }
-    login(username, password) {
+    login() {
         this.API.login();
     }
 }
 UswagonLoginButtonComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.10", ngImport: i0, type: UswagonLoginButtonComponent, deps: [{ token: UswagonAuthService }], target: i0.ɵɵFactoryTarget.Component });
-UswagonLoginButtonComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "15.2.10", type: UswagonLoginButtonComponent, selector: "uswagon-login-button", inputs: { class: "class" }, ngImport: i0, template: "<button [class]=\"class\">\n    <ng-content></ng-content>\n</button>", styles: [""] });
+UswagonLoginButtonComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "15.2.10", type: UswagonLoginButtonComponent, selector: "uswagon-login-button", inputs: { class: "class" }, ngImport: i0, template: "<button [class]=\"class\" (click)=\"login()\">\n    <ng-content></ng-content>\n</button>", styles: [""] });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.10", ngImport: i0, type: UswagonLoginButtonComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'uswagon-login-button', template: "<button [class]=\"class\">\n    <ng-content></ng-content>\n</button>" }]
+            args: [{ selector: 'uswagon-login-button', template: "<button [class]=\"class\" (click)=\"login()\">\n    <ng-content></ng-content>\n</button>" }]
         }], ctorParameters: function () { return [{ type: UswagonAuthService }]; }, propDecorators: { class: [{
                 type: Input
             }] } });

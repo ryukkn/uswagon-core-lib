@@ -4,7 +4,7 @@ export declare class UswagonLoginButtonComponent {
     private API;
     class: string;
     constructor(API: UswagonAuthService);
-    login(username: string, password: string): void;
+    login(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<UswagonLoginButtonComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<UswagonLoginButtonComponent, "uswagon-login-button", never, { "class": "class"; }, {}, never, ["*"], false, never>;
 }
