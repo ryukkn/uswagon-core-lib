@@ -65,6 +65,7 @@ class UswagonAuthService {
                             return;
                         }
                         catch (_a) {
+                            console.error('Custom validator should be on regex');
                             throw new Error('Custom validator should be on regex');
                         }
                     }
@@ -109,6 +110,7 @@ class UswagonAuthService {
     post(method, body) {
         var _a, _b;
         if (this.config == undefined) {
+            console.error('Config must be initialized, try service.initialize(config)');
             throw new Error('Config must be initialized, try service.initialize(config)');
         }
         for (var [key, obj] of Object.entries(body)) {
@@ -129,9 +131,9 @@ class UswagonAuthService {
         }, body)), { headers });
     }
     login() {
-        alert();
         // check if username and password fields are present
         if (this.authForm['username'] == null || this.authForm['password'] == null) {
+            console.error('Please initialize username and password fields using [name]="field"');
             throw new Error('Please initialize username and password fields using [name]="field"');
         }
         this.loading = true;
@@ -199,6 +201,7 @@ class UswagonAuthInputComponent {
     }
     ngOnInit() {
         if (this.name == undefined) {
+            console.error('Uswagon Input Component must have a [name]="value" property');
             throw new Error('Uswagon Input Component must have a [name]="value" property');
         }
         this.API.initializeFormField(this.name, this.required, this.type, this.validator);
@@ -231,10 +234,12 @@ class UswagonAuthInputErrorComponent {
     }
     ngOnInit() {
         if (this.name == undefined) {
+            console.error('Uswagon Input Component must have a [name]="value" property');
             throw new Error('Uswagon Input Component must have a [name]="value" property');
         }
         const field = this.API.getAuthField(this.name);
         if (field == null) {
+            console.error('Uswagon Input Error Component must be connected to a text field with [name]="value" property');
             throw new Error('Uswagon Input Error Component must be connected to a text field with [name]="value" property');
         }
     }
