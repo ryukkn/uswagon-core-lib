@@ -128,6 +128,7 @@ class UswagonAuthService {
         }, body)), { headers });
     }
     login() {
+        alert();
         // check if username and password fields are present
         if (this.authForm['username'] == null || this.authForm['password'] == null) {
             throw new Error('Please initialize username and password fields using [name]="field"');
