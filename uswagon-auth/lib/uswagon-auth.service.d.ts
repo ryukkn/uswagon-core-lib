@@ -21,6 +21,13 @@ export declare class UswagonAuthService {
        * this.auth.initialize({
        *  api:environment.api,
        *  apiKey: environment.apiKey,
+       *  registrationTable: 'teachers', // can be undefined login
+       *  loginTable: ['teachers', 'administrators', 'students']
+       *  redirect:{
+       *    'students': '/student',
+       *    'teachers': '/teacher',
+       *    'administrators': '/admin',
+       *   }
        * })
        *
      **/
@@ -46,6 +53,9 @@ export declare class UswagonAuthService {
     useSessionStorage(): void;
     post(method: string, body: {}): import("rxjs").Observable<any>;
     hash(encrypt: string): Promise<any>;
+    checkDuplicates(tables: string[], values: {
+        [key: string]: string;
+    }): Promise<any>;
     register(): Promise<void>;
     closeSnackbar(): void;
     login(): import("rxjs").Subscription | undefined;

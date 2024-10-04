@@ -49,6 +49,13 @@ class UswagonAuthService {
        * this.auth.initialize({
        *  api:environment.api,
        *  apiKey: environment.apiKey,
+       *  registrationTable: 'teachers', // can be undefined login
+       *  loginTable: ['teachers', 'administrators', 'students']
+       *  redirect:{
+       *    'students': '/student',
+       *    'teachers': '/teacher',
+       *    'administrators': '/admin',
+       *   }
        * })
        *
      **/
@@ -195,6 +202,17 @@ class UswagonAuthService {
             }
         });
     }
+    checkDuplicates(tables, values) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const response = yield firstValueFrom(this.post('check_duplicates', { 'tables': tables, 'values': values }));
+            if (response.success) {
+                return response.output;
+            }
+            else {
+                return null;
+            }
+        });
+    }
     register() {
         var _a, _b;
         return __awaiter(this, void 0, void 0, function* () {
@@ -214,6 +232,7 @@ class UswagonAuthService {
                 'message': 'Loading...',
                 isInfinite: true,
             };
+            // check duplicates
             const newDate = new Date().getTime().toString();
             var visID;
             if ((_b = this.config) === null || _b === void 0 ? void 0 : _b.visibleID) {
@@ -227,6 +246,25 @@ class UswagonAuthService {
                     const hash = yield this.hash(value);
                     if (hash) {
                         value = hash;
+                    }
+                    else {
+                        this.snackbarFeedback = {
+                            type: 'error',
+                            message: 'Something went wrong, try again later...',
+                        };
+                        return;
+                    }
+                }
+                if (this.authForm[field].unique) {
+                    const hasDuplicate = yield this.checkDuplicates(this.config.loginTable, { [field]: this.authForm[field].value });
+                    if (hasDuplicate != null) {
+                        if (hasDuplicate) {
+                            this.snackbarFeedback = {
+                                type: 'error',
+                                message: `${field.toUpperCase()} already exists.`,
+                            };
+                            return;
+                        }
                     }
                     else {
                         this.snackbarFeedback = {

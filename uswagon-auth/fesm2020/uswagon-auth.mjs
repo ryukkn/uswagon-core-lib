@@ -48,6 +48,13 @@ class UswagonAuthService {
        * this.auth.initialize({
        *  api:environment.api,
        *  apiKey: environment.apiKey,
+       *  registrationTable: 'teachers', // can be undefined login
+       *  loginTable: ['teachers', 'administrators', 'students']
+       *  redirect:{
+       *    'students': '/student',
+       *    'teachers': '/teacher',
+       *    'administrators': '/admin',
+       *   }
        * })
        *
      **/
@@ -189,6 +196,15 @@ class UswagonAuthService {
             return null;
         }
     }
+    async checkDuplicates(tables, values) {
+        const response = await firstValueFrom(this.post('check_duplicates', { 'tables': tables, 'values': values }));
+        if (response.success) {
+            return response.output;
+        }
+        else {
+            return null;
+        }
+    }
     async register() {
         if (this.loading) {
             return;
@@ -206,6 +222,7 @@ class UswagonAuthService {
             'message': 'Loading...',
             isInfinite: true,
         };
+        // check duplicates
         const newDate = new Date().getTime().toString();
         var visID;
         if (this.config?.visibleID) {
@@ -219,6 +236,25 @@ class UswagonAuthService {
                 const hash = await this.hash(value);
                 if (hash) {
                     value = hash;
+                }
+                else {
+                    this.snackbarFeedback = {
+                        type: 'error',
+                        message: 'Something went wrong, try again later...',
+                    };
+                    return;
+                }
+            }
+            if (this.authForm[field].unique) {
+                const hasDuplicate = await this.checkDuplicates(this.config.loginTable, { [field]: this.authForm[field].value });
+                if (hasDuplicate != null) {
+                    if (hasDuplicate) {
+                        this.snackbarFeedback = {
+                            type: 'error',
+                            message: `${field.toUpperCase()} already exists.`,
+                        };
+                        return;
+                    }
                 }
                 else {
                     this.snackbarFeedback = {

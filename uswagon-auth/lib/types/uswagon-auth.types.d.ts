@@ -29,7 +29,7 @@ export interface AuthConfig {
     api: string;
     apiKey: string;
     verification?: boolean;
-    loginTable?: string[];
+    loginTable: string[];
     registrationTable?: string;
     redirect: AuthRedirect;
     visibleID?: string;
