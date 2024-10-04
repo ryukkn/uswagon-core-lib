@@ -351,15 +351,15 @@ class UswagonAuthService {
             }
         });
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UswagonAuthService, deps: [{ token: i1.HttpClient }, { token: i2.Router }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UswagonAuthService, providedIn: 'root' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonAuthService, deps: [{ token: i1.HttpClient }, { token: i2.Router }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonAuthService, providedIn: 'root' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UswagonAuthService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonAuthService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root'
                 }]
-        }], ctorParameters: function () { return [{ type: i1.HttpClient }, { type: i2.Router }]; } });
+        }], ctorParameters: () => [{ type: i1.HttpClient }, { type: i2.Router }] });
 
 class UswagonLoginButtonComponent {
     constructor(API) {
@@ -369,13 +369,13 @@ class UswagonLoginButtonComponent {
     login() {
         this.API.login();
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UswagonLoginButtonComponent, deps: [{ token: UswagonAuthService }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: UswagonLoginButtonComponent, selector: "uswagon-login-button", inputs: { class: "class" }, ngImport: i0, template: "<button [class]=\"class + ' uswagon-login-button'\" (click)=\"login()\">\n    <ng-content></ng-content>\n</button>\n\n", styles: [""] }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonLoginButtonComponent, deps: [{ token: UswagonAuthService }], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.3.12", type: UswagonLoginButtonComponent, selector: "uswagon-login-button", inputs: { class: "class" }, ngImport: i0, template: "<button [class]=\"class + ' uswagon-login-button'\" (click)=\"login()\">\n    <ng-content></ng-content>\n</button>\n\n", styles: [""] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UswagonLoginButtonComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonLoginButtonComponent, decorators: [{
             type: Component,
             args: [{ selector: 'uswagon-login-button', template: "<button [class]=\"class + ' uswagon-login-button'\" (click)=\"login()\">\n    <ng-content></ng-content>\n</button>\n\n" }]
-        }], ctorParameters: function () { return [{ type: UswagonAuthService }]; }, propDecorators: { class: [{
+        }], ctorParameters: () => [{ type: UswagonAuthService }], propDecorators: { class: [{
                 type: Input
             }] } });
 
@@ -401,13 +401,13 @@ class UswagonAuthInputComponent {
     handleInput(event) {
         this.API.handleFormValue(this.name, event.target.value);
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UswagonAuthInputComponent, deps: [{ token: UswagonAuthService }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: UswagonAuthInputComponent, selector: "uswagon-auth-input", inputs: { name: "name", required: "required", validator: "validator", type: "type", unique: "unique", aliases: "aliases", encrypted: "encrypted", class: "class" }, ngImport: i0, template: "<input [value]=\"getInput()\" [class]=\"class + ' uswagon-auth-input'\" [type]=\"type\" (change)=\"handleInput($event)\">", styles: [""] }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonAuthInputComponent, deps: [{ token: UswagonAuthService }], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.3.12", type: UswagonAuthInputComponent, selector: "uswagon-auth-input", inputs: { name: "name", required: "required", validator: "validator", type: "type", unique: "unique", aliases: "aliases", encrypted: "encrypted", class: "class" }, ngImport: i0, template: "<input [value]=\"getInput()\" [class]=\"class + ' uswagon-auth-input'\" [type]=\"type\" (change)=\"handleInput($event)\">", styles: [""] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UswagonAuthInputComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonAuthInputComponent, decorators: [{
             type: Component,
             args: [{ selector: 'uswagon-auth-input', template: "<input [value]=\"getInput()\" [class]=\"class + ' uswagon-auth-input'\" [type]=\"type\" (change)=\"handleInput($event)\">" }]
-        }], ctorParameters: function () { return [{ type: UswagonAuthService }]; }, propDecorators: { name: [{
+        }], ctorParameters: () => [{ type: UswagonAuthService }], propDecorators: { name: [{
                 type: Input
             }], required: [{
                 type: Input
@@ -448,13 +448,13 @@ class UswagonAuthInputErrorComponent {
     getErrorMessage() {
         return this.API.getAuthField(this.name).error;
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UswagonAuthInputErrorComponent, deps: [{ token: UswagonAuthService }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: UswagonAuthInputErrorComponent, selector: "uswagon-auth-input-error", inputs: { name: "name", class: "class", hiddenClass: "hiddenClass" }, ngImport: i0, template: "<div [hidden]=\"!hasError() && hiddenClass.trim() != ''\" [class]=\"class + ' uswagon-auth-input-error'\">{{getErrorMessage()}}\n    <ng-content></ng-content>\n</div>\n", styles: [""] }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonAuthInputErrorComponent, deps: [{ token: UswagonAuthService }], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.3.12", type: UswagonAuthInputErrorComponent, selector: "uswagon-auth-input-error", inputs: { name: "name", class: "class", hiddenClass: "hiddenClass" }, ngImport: i0, template: "<div [hidden]=\"!hasError() && hiddenClass.trim() != ''\" [class]=\"class + ' uswagon-auth-input-error'\">{{getErrorMessage()}}\n    <ng-content></ng-content>\n</div>\n", styles: [""] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UswagonAuthInputErrorComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonAuthInputErrorComponent, decorators: [{
             type: Component,
             args: [{ selector: 'uswagon-auth-input-error', template: "<div [hidden]=\"!hasError() && hiddenClass.trim() != ''\" [class]=\"class + ' uswagon-auth-input-error'\">{{getErrorMessage()}}\n    <ng-content></ng-content>\n</div>\n" }]
-        }], ctorParameters: function () { return [{ type: UswagonAuthService }]; }, propDecorators: { name: [{
+        }], ctorParameters: () => [{ type: UswagonAuthService }], propDecorators: { name: [{
                 type: Input
             }], class: [{
                 type: Input
@@ -476,13 +476,13 @@ class UswagonRememberMeComponent {
             this.API.useSessionStorage();
         }
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UswagonRememberMeComponent, deps: [{ token: UswagonAuthService }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: UswagonRememberMeComponent, selector: "lib-uswagon-remember-me", ngImport: i0, template: "<input type=\"checkbox\" [value]=\"persistent\" (click)=\"togglePersistentLogin()\">\n", styles: [""] }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonRememberMeComponent, deps: [{ token: UswagonAuthService }], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.3.12", type: UswagonRememberMeComponent, selector: "lib-uswagon-remember-me", ngImport: i0, template: "<input type=\"checkbox\" [value]=\"persistent\" (click)=\"togglePersistentLogin()\">\n", styles: [""] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UswagonRememberMeComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonRememberMeComponent, decorators: [{
             type: Component,
             args: [{ selector: 'lib-uswagon-remember-me', template: "<input type=\"checkbox\" [value]=\"persistent\" (click)=\"togglePersistentLogin()\">\n" }]
-        }], ctorParameters: function () { return [{ type: UswagonAuthService }]; } });
+        }], ctorParameters: () => [{ type: UswagonAuthService }] });
 
 class UswagonRegisterButtonComponent {
     constructor(API) {
@@ -492,13 +492,13 @@ class UswagonRegisterButtonComponent {
     register() {
         this.API.register();
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UswagonRegisterButtonComponent, deps: [{ token: UswagonAuthService }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: UswagonRegisterButtonComponent, selector: "uswagon-register-button", inputs: { class: "class" }, ngImport: i0, template: "<button [class]=\"class\" (click)=\"register()\">\n    <ng-content></ng-content>\n</button>", styles: [""] }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonRegisterButtonComponent, deps: [{ token: UswagonAuthService }], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.3.12", type: UswagonRegisterButtonComponent, selector: "uswagon-register-button", inputs: { class: "class" }, ngImport: i0, template: "<button [class]=\"class\" (click)=\"register()\">\n    <ng-content></ng-content>\n</button>", styles: [""] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UswagonRegisterButtonComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonRegisterButtonComponent, decorators: [{
             type: Component,
             args: [{ selector: 'uswagon-register-button', template: "<button [class]=\"class\" (click)=\"register()\">\n    <ng-content></ng-content>\n</button>" }]
-        }], ctorParameters: function () { return [{ type: UswagonAuthService }]; }, propDecorators: { class: [{
+        }], ctorParameters: () => [{ type: UswagonAuthService }], propDecorators: { class: [{
                 type: Input
             }] } });
 
@@ -515,13 +515,13 @@ class UswagonAuthSnackbarCloseComponent {
     close() {
         return this.API.closeSnackbar();
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UswagonAuthSnackbarCloseComponent, deps: [{ token: UswagonAuthService }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: UswagonAuthSnackbarCloseComponent, selector: "uswagon-auth-snackbar-close", inputs: { class: "class", errorClass: "errorClass", successClass: "successClass" }, ngImport: i0, template: "<button   [class]=\"'uswagon-snackbar-close '+ class +' '+ getSnackbarFeedback()?.type == 'error'? errorClass : successClass\" (click)=\"close()\">x</button>", styles: [""] }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonAuthSnackbarCloseComponent, deps: [{ token: UswagonAuthService }], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.3.12", type: UswagonAuthSnackbarCloseComponent, selector: "uswagon-auth-snackbar-close", inputs: { class: "class", errorClass: "errorClass", successClass: "successClass" }, ngImport: i0, template: "<button   [class]=\"'uswagon-snackbar-close '+ class +' '+ getSnackbarFeedback()?.type == 'error'? errorClass : successClass\" (click)=\"close()\">x</button>", styles: [""] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UswagonAuthSnackbarCloseComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonAuthSnackbarCloseComponent, decorators: [{
             type: Component,
             args: [{ selector: 'uswagon-auth-snackbar-close', template: "<button   [class]=\"'uswagon-snackbar-close '+ class +' '+ getSnackbarFeedback()?.type == 'error'? errorClass : successClass\" (click)=\"close()\">x</button>" }]
-        }], ctorParameters: function () { return [{ type: UswagonAuthService }]; }, propDecorators: { class: [{
+        }], ctorParameters: () => [{ type: UswagonAuthService }], propDecorators: { class: [{
                 type: Input
             }], errorClass: [{
                 type: Input
@@ -549,13 +549,13 @@ class UswagonAuthSnackbarContainerComponent {
         }
         return feedback;
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UswagonAuthSnackbarContainerComponent, deps: [{ token: UswagonAuthService }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: UswagonAuthSnackbarContainerComponent, selector: "uswagon-auth-snackbar-container", inputs: { class: "class", errorClass: "errorClass", successClass: "successClass", hiddenClass: "hiddenClass", timer: "timer", isInfinite: "isInfinite" }, ngImport: i0, template: "<div [hidden]=\"getSnackbarFeedback()==undefined && hiddenClass.trim()==''\" class=\"{{getSnackbarFeedback() == undefined ? hiddenClass :'uswagon-snackbar-container ' + class+' '+getSnackbarFeedback()?.type == 'error'? errorClass : successClass}}\">\n   <ng-content></ng-content>\n</div>", styles: [""] }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonAuthSnackbarContainerComponent, deps: [{ token: UswagonAuthService }], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.3.12", type: UswagonAuthSnackbarContainerComponent, selector: "uswagon-auth-snackbar-container", inputs: { class: "class", errorClass: "errorClass", successClass: "successClass", hiddenClass: "hiddenClass", timer: "timer", isInfinite: "isInfinite" }, ngImport: i0, template: "<div [hidden]=\"getSnackbarFeedback()==undefined && hiddenClass.trim()==''\" class=\"{{getSnackbarFeedback() == undefined ? hiddenClass :'uswagon-snackbar-container ' + class+' '+getSnackbarFeedback()?.type == 'error'? errorClass : successClass}}\">\n   <ng-content></ng-content>\n</div>", styles: [""] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UswagonAuthSnackbarContainerComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonAuthSnackbarContainerComponent, decorators: [{
             type: Component,
             args: [{ selector: 'uswagon-auth-snackbar-container', template: "<div [hidden]=\"getSnackbarFeedback()==undefined && hiddenClass.trim()==''\" class=\"{{getSnackbarFeedback() == undefined ? hiddenClass :'uswagon-snackbar-container ' + class+' '+getSnackbarFeedback()?.type == 'error'? errorClass : successClass}}\">\n   <ng-content></ng-content>\n</div>" }]
-        }], ctorParameters: function () { return [{ type: UswagonAuthService }]; }, propDecorators: { class: [{
+        }], ctorParameters: () => [{ type: UswagonAuthService }], propDecorators: { class: [{
                 type: Input
             }], errorClass: [{
                 type: Input
@@ -579,13 +579,13 @@ class UswagonAuthSnackbarContentComponent {
     getSnackbarFeedback() {
         return this.API.snackbarFeedback;
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UswagonAuthSnackbarContentComponent, deps: [{ token: UswagonAuthService }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: UswagonAuthSnackbarContentComponent, selector: "uswagon-auth-snackbar-content", inputs: { class: "class", errorClass: "errorClass", successClass: "successClass" }, ngImport: i0, template: "<div [class]=\"'uswagon-snackbar-content '+ class + getSnackbarFeedback()?.type == 'error'? errorClass : successClass\">\n    {{getSnackbarFeedback()?.message}}\n</div>\n", styles: [""] }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonAuthSnackbarContentComponent, deps: [{ token: UswagonAuthService }], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.3.12", type: UswagonAuthSnackbarContentComponent, selector: "uswagon-auth-snackbar-content", inputs: { class: "class", errorClass: "errorClass", successClass: "successClass" }, ngImport: i0, template: "<div [class]=\"'uswagon-snackbar-content '+ class + getSnackbarFeedback()?.type == 'error'? errorClass : successClass\">\n    {{getSnackbarFeedback()?.message}}\n</div>\n", styles: [""] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UswagonAuthSnackbarContentComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonAuthSnackbarContentComponent, decorators: [{
             type: Component,
             args: [{ selector: 'uswagon-auth-snackbar-content', template: "<div [class]=\"'uswagon-snackbar-content '+ class + getSnackbarFeedback()?.type == 'error'? errorClass : successClass\">\n    {{getSnackbarFeedback()?.message}}\n</div>\n" }]
-        }], ctorParameters: function () { return [{ type: UswagonAuthService }]; }, propDecorators: { class: [{
+        }], ctorParameters: () => [{ type: UswagonAuthService }], propDecorators: { class: [{
                 type: Input
             }], errorClass: [{
                 type: Input
@@ -601,19 +601,19 @@ class UswagonLogoutButtonComponent {
     logout() {
         this.API.logout();
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UswagonLogoutButtonComponent, deps: [{ token: UswagonAuthService }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: UswagonLogoutButtonComponent, selector: "uswagon-logout-button", inputs: { class: "class" }, ngImport: i0, template: "<button [class]=\"class + ' uswagon-logout-button'\" (click)=\"logout()\">\n    <ng-content></ng-content>\n</button>\n\n", styles: [""] }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonLogoutButtonComponent, deps: [{ token: UswagonAuthService }], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.3.12", type: UswagonLogoutButtonComponent, selector: "uswagon-logout-button", inputs: { class: "class" }, ngImport: i0, template: "<button [class]=\"class + ' uswagon-logout-button'\" (click)=\"logout()\">\n    <ng-content></ng-content>\n</button>\n\n", styles: [""] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UswagonLogoutButtonComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonLogoutButtonComponent, decorators: [{
             type: Component,
             args: [{ selector: 'uswagon-logout-button', template: "<button [class]=\"class + ' uswagon-logout-button'\" (click)=\"logout()\">\n    <ng-content></ng-content>\n</button>\n\n" }]
-        }], ctorParameters: function () { return [{ type: UswagonAuthService }]; }, propDecorators: { class: [{
+        }], ctorParameters: () => [{ type: UswagonAuthService }], propDecorators: { class: [{
                 type: Input
             }] } });
 
 class UswagonAuthModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UswagonAuthModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: UswagonAuthModule, declarations: [UswagonLoginButtonComponent,
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonAuthModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.3.12", ngImport: i0, type: UswagonAuthModule, declarations: [UswagonLoginButtonComponent,
             UswagonRegisterButtonComponent,
             UswagonAuthInputComponent,
             UswagonRememberMeComponent,
@@ -630,9 +630,9 @@ class UswagonAuthModule {
             UswagonAuthInputComponent,
             UswagonRememberMeComponent,
             UswagonAuthInputErrorComponent] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UswagonAuthModule, imports: [HttpClientModule] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonAuthModule, imports: [HttpClientModule] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UswagonAuthModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonAuthModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [

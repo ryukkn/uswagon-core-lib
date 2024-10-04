@@ -1,4 +1,3 @@
-import { __awaiter } from 'tslib';
 import * as i1 from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import * as i0 from '@angular/core';
@@ -109,13 +108,11 @@ class UswagonCoreService {
             alert('Config must be initialized, try service.initialize(config)');
         }
         this.socket.onopen = () => {
-            var _a;
-            this.socket.send(JSON.stringify({ key: (_a = this.config) === null || _a === void 0 ? void 0 : _a.apiKey, data: data }));
+            this.socket.send(JSON.stringify({ key: this.config?.apiKey, data: data }));
         };
     }
     ngOnDestroy() {
-        var _a;
-        (_a = this.socket) === null || _a === void 0 ? void 0 : _a.close();
+        this.socket?.close();
     }
     pgEscapeString(input) {
         if (typeof input !== 'string') {
@@ -205,16 +202,14 @@ class UswagonCoreService {
       * }
       *
     **/
-    hash(encrypt) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const response = yield firstValueFrom(this.post('get_hash', { encrypt: encrypt }));
-            if (response.success) {
-                return response.output;
-            }
-            else {
-                return null;
-            }
-        });
+    async hash(encrypt) {
+        const response = await firstValueFrom(this.post('get_hash', { encrypt: encrypt }));
+        if (response.success) {
+            return response.output;
+        }
+        else {
+            return null;
+        }
     }
     /**
        * Creates a unique identifier with the length of 32
@@ -237,14 +232,13 @@ class UswagonCoreService {
         return timestamp + randomPart.slice(0, 16); // Combine timestamp with random part
     }
     post(method, body) {
-        var _a, _b;
         if (this.config == undefined) {
             alert('Config must be initialized, try service.initialize(config)');
         }
         for (var [key, obj] of Object.entries(body)) {
             if (key == 'values') {
                 for (var [field, value] of Object.entries(obj)) {
-                    obj[field] = value !== null && value !== void 0 ? value : '';
+                    obj[field] = value ?? '';
                 }
             }
         }
@@ -253,8 +247,8 @@ class UswagonCoreService {
             'Content-Type': 'application/json',
         });
         const salt = new Date().getTime();
-        return this.http.post(((_a = this.config) === null || _a === void 0 ? void 0 : _a.api) + '?' + salt, JSON.stringify(Object.assign({
-            API_KEY: (_b = this.config) === null || _b === void 0 ? void 0 : _b.apiKey,
+        return this.http.post(this.config?.api + '?' + salt, JSON.stringify(Object.assign({
+            API_KEY: this.config?.apiKey,
             Method: method,
         }, body)), { headers });
     }
@@ -281,15 +275,13 @@ class UswagonCoreService {
        * }
        *
      **/
-    create(postObject) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (this.config == undefined) {
-                alert('Config must be initialized, try service.initialize(config)');
-            }
-            return yield firstValueFrom(this.post('create_entry', {
-                'data': JSON.stringify(postObject),
-            }));
-        });
+    async create(postObject) {
+        if (this.config == undefined) {
+            alert('Config must be initialized, try service.initialize(config)');
+        }
+        return await firstValueFrom(this.post('create_entry', {
+            'data': JSON.stringify(postObject),
+        }));
     }
     /**
        * Runs an read query to the server.
@@ -319,15 +311,13 @@ class UswagonCoreService {
        * }
        *
      **/
-    read(postObject) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (this.config == undefined) {
-                alert('Config must be initialized, try service.initialize(config)');
-            }
-            return yield firstValueFrom(this.post('get_entries', {
-                'data': JSON.stringify(postObject),
-            }));
-        });
+    async read(postObject) {
+        if (this.config == undefined) {
+            alert('Config must be initialized, try service.initialize(config)');
+        }
+        return await firstValueFrom(this.post('get_entries', {
+            'data': JSON.stringify(postObject),
+        }));
     }
     /**
       * Runs an update query to the server.
@@ -352,15 +342,13 @@ class UswagonCoreService {
       * }
       *
     **/
-    update(postObject) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (this.config == undefined) {
-                alert('Config must be initialized, try service.initialize(config)');
-            }
-            return firstValueFrom(this.post('update_entry', {
-                'data': JSON.stringify(postObject),
-            }));
-        });
+    async update(postObject) {
+        if (this.config == undefined) {
+            alert('Config must be initialized, try service.initialize(config)');
+        }
+        return firstValueFrom(this.post('update_entry', {
+            'data': JSON.stringify(postObject),
+        }));
     }
     /**
        * Runs an delete query to the server.
@@ -379,15 +367,13 @@ class UswagonCoreService {
        * }
        *
      **/
-    delete(postObject) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (this.config == undefined) {
-                alert('Config must be initialized, try service.initialize(config)');
-            }
-            return yield firstValueFrom(this.post('delete_entry', {
-                data: JSON.stringify(postObject),
-            }));
-        });
+    async delete(postObject) {
+        if (this.config == undefined) {
+            alert('Config must be initialized, try service.initialize(config)');
+        }
+        return await firstValueFrom(this.post('delete_entry', {
+            data: JSON.stringify(postObject),
+        }));
     }
     // FILE HANDLERS
     /**
@@ -404,7 +390,6 @@ class UswagonCoreService {
       *
     **/
     getFileURL(file) {
-        var _a;
         if (this.config == undefined) {
             alert("Please initialize uswagon core on root app.component.ts");
             return;
@@ -412,7 +397,7 @@ class UswagonCoreService {
         if (file) {
             if (file.includes('http'))
                 return file;
-            return ((_a = this.config) === null || _a === void 0 ? void 0 : _a.server) + '/' + file;
+            return this.config?.server + '/' + file;
         }
         return file;
     }
@@ -448,11 +433,10 @@ class UswagonCoreService {
                 const chunk = file.slice(start, end);
                 const reader = new FileReader();
                 reader.onloadend = () => {
-                    var _a, _b;
                     const base64String = reader.result.split(',')[1];
                     this.http
-                        .post(((_a = this.config) === null || _a === void 0 ? void 0 : _a.nodeserver) + '/filehandler-progress', {
-                        key: (_b = this.config) === null || _b === void 0 ? void 0 : _b.apiKey,
+                        .post(this.config?.nodeserver + '/filehandler-progress', {
+                        key: this.config?.apiKey,
                         method: 'create_url',
                         chunk: base64String,
                         fileName: 'files/' + filename,
@@ -485,15 +469,15 @@ class UswagonCoreService {
             uploadChunk(0);
         });
     }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonCoreService, deps: [{ token: i1.HttpClient }, { token: i2.Router }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonCoreService, providedIn: 'root' }); }
 }
-UswagonCoreService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.10", ngImport: i0, type: UswagonCoreService, deps: [{ token: i1.HttpClient }, { token: i2.Router }], target: i0.ɵɵFactoryTarget.Injectable });
-UswagonCoreService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "15.2.10", ngImport: i0, type: UswagonCoreService, providedIn: 'root' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.10", ngImport: i0, type: UswagonCoreService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonCoreService, decorators: [{
             type: Injectable,
             args: [{
                     providedIn: 'root'
                 }]
-        }], ctorParameters: function () { return [{ type: i1.HttpClient }, { type: i2.Router }]; } });
+        }], ctorParameters: () => [{ type: i1.HttpClient }, { type: i2.Router }] });
 
 /*
  * Public API Surface of uswagon-core

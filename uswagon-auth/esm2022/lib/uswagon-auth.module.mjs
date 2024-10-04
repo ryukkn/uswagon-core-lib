@@ -11,8 +11,8 @@ import { UswagonAuthSnackbarCloseComponent } from './uswagon-auth-snackbar-close
 import { UswagonLogoutButtonComponent } from './uswagon-logout-button/uswagon-logout-button.component';
 import * as i0 from "@angular/core";
 export class UswagonAuthModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UswagonAuthModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: UswagonAuthModule, declarations: [UswagonLoginButtonComponent,
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonAuthModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.3.12", ngImport: i0, type: UswagonAuthModule, declarations: [UswagonLoginButtonComponent,
             UswagonRegisterButtonComponent,
             UswagonAuthInputComponent,
             UswagonRememberMeComponent,
@@ -29,9 +29,9 @@ export class UswagonAuthModule {
             UswagonAuthInputComponent,
             UswagonRememberMeComponent,
             UswagonAuthInputErrorComponent] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UswagonAuthModule, imports: [HttpClientModule] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonAuthModule, imports: [HttpClientModule] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UswagonAuthModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonAuthModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [
