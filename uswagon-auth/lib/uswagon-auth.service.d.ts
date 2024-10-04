@@ -1,28 +1,54 @@
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { AuthConfig } from './types/uswagon-auth.types';
+import { AuthConfig, SnackbarFeedback } from './types/uswagon-auth.types';
 import * as i0 from "@angular/core";
 export declare class UswagonAuthService {
     private http;
     private router;
+    snackbarFeedback?: SnackbarFeedback;
     private usedStorage;
     private config;
     private loading;
-    private snackbarFeedback;
     private authForm;
+    private emailNotification;
     private validators;
     constructor(http: HttpClient, router: Router);
+    /**
+       * Initialize the service for the project
+       * @param config - configuration that points the service to its appropriate server
+       *
+       * @example
+       * this.auth.initialize({
+       *  api:environment.api,
+       *  apiKey: environment.apiKey,
+       * })
+       *
+     **/
     initialize(config: AuthConfig): void;
-    validateInputFields(): void;
+    validateInputFields(): boolean;
+    clearForm(): void;
+    /**
+       * Check if user is authenticated
+       *
+       * @example
+       * const role = this.auth.accountLoggedIn()
+       *
+       * OUTPUT: role of user if authenticated, null if unauthenticated
+     **/
+    accountLoggedIn(): string | null;
+    logout(): void;
     getAuthField(key: string): import("./types/uswagon-auth.types").AuthFormField;
-    initializeFormField(key: string, required: boolean, type: string, validator?: string): void;
+    initializeFormField(key: string, required: boolean, unique: boolean, type: string, aliases?: string[], encrypted?: boolean, validator?: string): void;
     handleFormValue(key: string, value: string): void;
     isLocalStorage(): boolean;
     getSavedEmail(): string | null;
     useLocalStorage(): void;
     useSessionStorage(): void;
     post(method: string, body: {}): import("rxjs").Observable<any>;
-    login(): import("rxjs").Subscription;
+    hash(encrypt: string): Promise<any>;
+    register(): Promise<void>;
+    closeSnackbar(): void;
+    login(): import("rxjs").Subscription | undefined;
     static ɵfac: i0.ɵɵFactoryDeclaration<UswagonAuthService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<UswagonAuthService>;
 }

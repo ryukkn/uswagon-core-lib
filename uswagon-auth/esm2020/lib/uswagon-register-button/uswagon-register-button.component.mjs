@@ -1,11 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import * as i0 from "@angular/core";
+import * as i1 from "../uswagon-auth.service";
 export class UswagonRegisterButtonComponent {
+    constructor(API) {
+        this.API = API;
+        this.class = '';
+    }
+    register() {
+        this.API.register();
+    }
 }
-UswagonRegisterButtonComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.10", ngImport: i0, type: UswagonRegisterButtonComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-UswagonRegisterButtonComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "15.2.10", type: UswagonRegisterButtonComponent, selector: "uswagon-register-button", ngImport: i0, template: "<p>uswagon-register-button works!</p>\n", styles: [""] });
+UswagonRegisterButtonComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.10", ngImport: i0, type: UswagonRegisterButtonComponent, deps: [{ token: i1.UswagonAuthService }], target: i0.ɵɵFactoryTarget.Component });
+UswagonRegisterButtonComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "15.2.10", type: UswagonRegisterButtonComponent, selector: "uswagon-register-button", inputs: { class: "class" }, ngImport: i0, template: "<button [class]=\"class\" (click)=\"register()\">\n    <ng-content></ng-content>\n</button>", styles: [""] });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.10", ngImport: i0, type: UswagonRegisterButtonComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'uswagon-register-button', template: "<p>uswagon-register-button works!</p>\n" }]
-        }] });
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidXN3YWdvbi1yZWdpc3Rlci1idXR0b24uY29tcG9uZW50LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vcHJvamVjdHMvdXN3YWdvbi1hdXRoL3NyYy9saWIvdXN3YWdvbi1yZWdpc3Rlci1idXR0b24vdXN3YWdvbi1yZWdpc3Rlci1idXR0b24uY29tcG9uZW50LnRzIiwiLi4vLi4vLi4vLi4vLi4vcHJvamVjdHMvdXN3YWdvbi1hdXRoL3NyYy9saWIvdXN3YWdvbi1yZWdpc3Rlci1idXR0b24vdXN3YWdvbi1yZWdpc3Rlci1idXR0b24uY29tcG9uZW50Lmh0bWwiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxNQUFNLGVBQWUsQ0FBQzs7QUFPMUMsTUFBTSxPQUFPLDhCQUE4Qjs7NEhBQTlCLDhCQUE4QjtnSEFBOUIsOEJBQThCLCtEQ1AzQyx5Q0FDQTs0RkRNYSw4QkFBOEI7a0JBTDFDLFNBQVM7K0JBQ0UseUJBQXlCIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgQ29tcG9uZW50IH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5cbkBDb21wb25lbnQoe1xuICBzZWxlY3RvcjogJ3Vzd2Fnb24tcmVnaXN0ZXItYnV0dG9uJyxcbiAgdGVtcGxhdGVVcmw6ICcuL3Vzd2Fnb24tcmVnaXN0ZXItYnV0dG9uLmNvbXBvbmVudC5odG1sJyxcbiAgc3R5bGVVcmxzOiBbJy4vdXN3YWdvbi1yZWdpc3Rlci1idXR0b24uY29tcG9uZW50LmNzcyddXG59KVxuZXhwb3J0IGNsYXNzIFVzd2Fnb25SZWdpc3RlckJ1dHRvbkNvbXBvbmVudCB7XG5cbn1cbiIsIjxwPnVzd2Fnb24tcmVnaXN0ZXItYnV0dG9uIHdvcmtzITwvcD5cbiJdfQ==
+            args: [{ selector: 'uswagon-register-button', template: "<button [class]=\"class\" (click)=\"register()\">\n    <ng-content></ng-content>\n</button>" }]
+        }], ctorParameters: function () { return [{ type: i1.UswagonAuthService }]; }, propDecorators: { class: [{
+                type: Input
+            }] } });
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidXN3YWdvbi1yZWdpc3Rlci1idXR0b24uY29tcG9uZW50LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vcHJvamVjdHMvdXN3YWdvbi1hdXRoL3NyYy9saWIvdXN3YWdvbi1yZWdpc3Rlci1idXR0b24vdXN3YWdvbi1yZWdpc3Rlci1idXR0b24uY29tcG9uZW50LnRzIiwiLi4vLi4vLi4vLi4vLi4vcHJvamVjdHMvdXN3YWdvbi1hdXRoL3NyYy9saWIvdXN3YWdvbi1yZWdpc3Rlci1idXR0b24vdXN3YWdvbi1yZWdpc3Rlci1idXR0b24uY29tcG9uZW50Lmh0bWwiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxLQUFLLEVBQUUsTUFBTSxlQUFlLENBQUM7OztBQVNqRCxNQUFNLE9BQU8sOEJBQThCO0lBR3pDLFlBQW9CLEdBQXNCO1FBQXRCLFFBQUcsR0FBSCxHQUFHLENBQW1CO1FBRmpDLFVBQUssR0FBUyxFQUFFLENBQUM7SUFFa0IsQ0FBQztJQUc3QyxRQUFRO1FBQ04sSUFBSSxDQUFDLEdBQUcsQ0FBQyxRQUFRLEVBQUUsQ0FBQztJQUN0QixDQUFDOzs0SEFSVSw4QkFBOEI7Z0hBQTlCLDhCQUE4QiwyRkNUM0MsNkZBRVM7NEZET0ksOEJBQThCO2tCQUwxQyxTQUFTOytCQUNFLHlCQUF5Qjt5R0FLMUIsS0FBSztzQkFBYixLQUFLIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgQ29tcG9uZW50LCBJbnB1dCB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuaW1wb3J0IHsgVXN3YWdvbkF1dGhTZXJ2aWNlIH0gZnJvbSAnLi4vdXN3YWdvbi1hdXRoLnNlcnZpY2UnO1xuXG5cbkBDb21wb25lbnQoe1xuICBzZWxlY3RvcjogJ3Vzd2Fnb24tcmVnaXN0ZXItYnV0dG9uJyxcbiAgdGVtcGxhdGVVcmw6ICcuL3Vzd2Fnb24tcmVnaXN0ZXItYnV0dG9uLmNvbXBvbmVudC5odG1sJyxcbiAgc3R5bGVVcmxzOiBbJy4vdXN3YWdvbi1yZWdpc3Rlci1idXR0b24uY29tcG9uZW50LmNzcyddXG59KVxuZXhwb3J0IGNsYXNzIFVzd2Fnb25SZWdpc3RlckJ1dHRvbkNvbXBvbmVudCB7XG4gIEBJbnB1dCgpIGNsYXNzOnN0cmluZyA9Jyc7XG5cbiAgY29uc3RydWN0b3IocHJpdmF0ZSBBUEk6VXN3YWdvbkF1dGhTZXJ2aWNlKXt9XG4gIFxuXG4gIHJlZ2lzdGVyKCl7XG4gICAgdGhpcy5BUEkucmVnaXN0ZXIoKTtcbiAgfVxufVxuIiwiPGJ1dHRvbiBbY2xhc3NdPVwiY2xhc3NcIiAoY2xpY2spPVwicmVnaXN0ZXIoKVwiPlxuICAgIDxuZy1jb250ZW50PjwvbmctY29udGVudD5cbjwvYnV0dG9uPiJdfQ==

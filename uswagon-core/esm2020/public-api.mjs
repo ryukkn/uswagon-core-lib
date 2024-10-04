@@ -1,0 +1,5 @@
+/*
+ * Public API Surface of uswagon-core
+ */
+export * from './lib/uswagon-core.service';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljLWFwaS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3Byb2plY3RzL3Vzd2Fnb24tY29yZS9zcmMvcHVibGljLWFwaS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7R0FFRztBQUVILGNBQWMsNEJBQTRCLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIvKlxuICogUHVibGljIEFQSSBTdXJmYWNlIG9mIHVzd2Fnb24tY29yZVxuICovXG5cbmV4cG9ydCAqIGZyb20gJy4vbGliL3Vzd2Fnb24tY29yZS5zZXJ2aWNlJztcbiJdfQ==
