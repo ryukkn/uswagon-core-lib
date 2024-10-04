@@ -11,5 +11,5 @@ export declare class UswagonAuthInputErrorComponent implements OnInit {
     hasError(): boolean;
     getErrorMessage(): string | undefined;
     static ɵfac: i0.ɵɵFactoryDeclaration<UswagonAuthInputErrorComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<UswagonAuthInputErrorComponent, "uswagon-auth-input-error", never, { "name": "name"; "class": "class"; "hiddenClass": "hiddenClass"; }, {}, never, ["*"], false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<UswagonAuthInputErrorComponent, "uswagon-auth-input-error", never, { "name": { "alias": "name"; "required": false; }; "class": { "alias": "class"; "required": false; }; "hiddenClass": { "alias": "hiddenClass"; "required": false; }; }, {}, never, ["*"], false, never>;
 }

@@ -6,5 +6,5 @@ export declare class UswagonRegisterButtonComponent {
     constructor(API: UswagonAuthService);
     register(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<UswagonRegisterButtonComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<UswagonRegisterButtonComponent, "uswagon-register-button", never, { "class": "class"; }, {}, never, ["*"], false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<UswagonRegisterButtonComponent, "uswagon-register-button", never, { "class": { "alias": "class"; "required": false; }; }, {}, never, ["*"], false, never>;
 }

@@ -6,5 +6,5 @@ export declare class UswagonLogoutButtonComponent {
     constructor(API: UswagonAuthService);
     logout(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<UswagonLogoutButtonComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<UswagonLogoutButtonComponent, "uswagon-logout-button", never, { "class": "class"; }, {}, never, ["*"], false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<UswagonLogoutButtonComponent, "uswagon-logout-button", never, { "class": { "alias": "class"; "required": false; }; }, {}, never, ["*"], false, never>;
 }

@@ -2,18 +2,14 @@
   "name": "uswagon-auth",
   "version": "0.0.1",
   "peerDependencies": {
-    "@angular/common": "^15.2.0",
-    "@angular/core": "^15.2.0"
+    "@angular/common": "^16.2.12",
+    "@angular/core": "^16.2.12"
   },
   "dependencies": {
     "tslib": "^2.3.0"
   },
   "sideEffects": false,
-  "module": "fesm2015/uswagon-auth.mjs",
-  "es2020": "fesm2020/uswagon-auth.mjs",
-  "esm2020": "esm2020/uswagon-auth.mjs",
-  "fesm2020": "fesm2020/uswagon-auth.mjs",
-  "fesm2015": "fesm2015/uswagon-auth.mjs",
+  "module": "fesm2022/uswagon-auth.mjs",
   "typings": "index.d.ts",
   "exports": {
     "./package.json": {
@@ -21,11 +17,9 @@
     },
     ".": {
       "types": "./index.d.ts",
-      "esm2020": "./esm2020/uswagon-auth.mjs",
-      "es2020": "./fesm2020/uswagon-auth.mjs",
-      "es2015": "./fesm2015/uswagon-auth.mjs",
-      "node": "./fesm2015/uswagon-auth.mjs",
-      "default": "./fesm2020/uswagon-auth.mjs"
+      "esm2022": "./esm2022/uswagon-auth.mjs",
+      "esm": "./esm2022/uswagon-auth.mjs",
+      "default": "./fesm2022/uswagon-auth.mjs"
     }
   }
 }

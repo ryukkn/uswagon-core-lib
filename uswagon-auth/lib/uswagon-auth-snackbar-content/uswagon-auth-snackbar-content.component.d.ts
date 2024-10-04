@@ -8,5 +8,5 @@ export declare class UswagonAuthSnackbarContentComponent {
     constructor(API: UswagonAuthService);
     getSnackbarFeedback(): import("uswagon-auth").SnackbarFeedback | undefined;
     static ɵfac: i0.ɵɵFactoryDeclaration<UswagonAuthSnackbarContentComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<UswagonAuthSnackbarContentComponent, "uswagon-auth-snackbar-content", never, { "class": "class"; "errorClass": "errorClass"; "successClass": "successClass"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<UswagonAuthSnackbarContentComponent, "uswagon-auth-snackbar-content", never, { "class": { "alias": "class"; "required": false; }; "errorClass": { "alias": "errorClass"; "required": false; }; "successClass": { "alias": "successClass"; "required": false; }; }, {}, never, never, false, never>;
 }

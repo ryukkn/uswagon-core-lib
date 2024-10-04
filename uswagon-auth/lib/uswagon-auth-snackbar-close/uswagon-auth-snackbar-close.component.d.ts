@@ -9,5 +9,5 @@ export declare class UswagonAuthSnackbarCloseComponent {
     getSnackbarFeedback(): import("uswagon-auth").SnackbarFeedback | undefined;
     close(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<UswagonAuthSnackbarCloseComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<UswagonAuthSnackbarCloseComponent, "uswagon-auth-snackbar-close", never, { "class": "class"; "errorClass": "errorClass"; "successClass": "successClass"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<UswagonAuthSnackbarCloseComponent, "uswagon-auth-snackbar-close", never, { "class": { "alias": "class"; "required": false; }; "errorClass": { "alias": "errorClass"; "required": false; }; "successClass": { "alias": "successClass"; "required": false; }; }, {}, never, never, false, never>;
 }

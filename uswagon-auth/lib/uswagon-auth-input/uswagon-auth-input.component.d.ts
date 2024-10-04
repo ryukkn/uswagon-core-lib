@@ -16,5 +16,5 @@ export declare class UswagonAuthInputComponent implements OnInit {
     getInput(): any;
     handleInput(event: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<UswagonAuthInputComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<UswagonAuthInputComponent, "uswagon-auth-input", never, { "name": "name"; "required": "required"; "validator": "validator"; "type": "type"; "unique": "unique"; "aliases": "aliases"; "encrypted": "encrypted"; "class": "class"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<UswagonAuthInputComponent, "uswagon-auth-input", never, { "name": { "alias": "name"; "required": false; }; "required": { "alias": "required"; "required": false; }; "validator": { "alias": "validator"; "required": false; }; "type": { "alias": "type"; "required": false; }; "unique": { "alias": "unique"; "required": false; }; "aliases": { "alias": "aliases"; "required": false; }; "encrypted": { "alias": "encrypted"; "required": false; }; "class": { "alias": "class"; "required": false; }; }, {}, never, never, false, never>;
 }
