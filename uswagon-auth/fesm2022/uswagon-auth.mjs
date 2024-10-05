@@ -580,11 +580,11 @@ class UswagonAuthSnackbarContentComponent {
         return this.API.snackbarFeedback;
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonAuthSnackbarContentComponent, deps: [{ token: UswagonAuthService }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.3.12", type: UswagonAuthSnackbarContentComponent, selector: "uswagon-auth-snackbar-content", inputs: { class: "class", errorClass: "errorClass", successClass: "successClass" }, ngImport: i0, template: "<div [class]=\"'uswagon-snackbar-content '+ class + ' ' + getSnackbarFeedback()?.type == 'error'? errorClass : successClass\">\n    {{getSnackbarFeedback()?.message}}\n</div>\n", styles: [""] }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.3.12", type: UswagonAuthSnackbarContentComponent, selector: "uswagon-auth-snackbar-content", inputs: { class: "class", errorClass: "errorClass", successClass: "successClass" }, ngImport: i0, template: "<div [class]=\"'uswagon-snackbar-content '+ class + ' ' +( getSnackbarFeedback()?.type == 'error'? errorClass : successClass)\">\n    {{getSnackbarFeedback()?.message}}\n</div>\n", styles: [""] }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonAuthSnackbarContentComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'uswagon-auth-snackbar-content', template: "<div [class]=\"'uswagon-snackbar-content '+ class + ' ' + getSnackbarFeedback()?.type == 'error'? errorClass : successClass\">\n    {{getSnackbarFeedback()?.message}}\n</div>\n" }]
+            args: [{ selector: 'uswagon-auth-snackbar-content', template: "<div [class]=\"'uswagon-snackbar-content '+ class + ' ' +( getSnackbarFeedback()?.type == 'error'? errorClass : successClass)\">\n    {{getSnackbarFeedback()?.message}}\n</div>\n" }]
         }], ctorParameters: () => [{ type: UswagonAuthService }], propDecorators: { class: [{
                 type: Input
             }], errorClass: [{
