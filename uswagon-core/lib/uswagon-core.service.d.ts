@@ -6,6 +6,15 @@ import * as i0 from "@angular/core";
 export declare class UswagonCoreService implements OnDestroy {
     private http;
     private router;
+    /**
+      * Upload progress indicator on current file upload
+      *
+      * @example
+      * getUploadProgress(){
+      *  return this.API.uploadProgress;
+      * }
+      *
+    **/
     uploadProgress?: number;
     private coreFeedback?;
     private publicForm;
@@ -165,9 +174,9 @@ export declare class UswagonCoreService implements OnDestroy {
      **/
     getFeedback(): SnackbarCoreFeedback | undefined;
     /**
-      * Creates a hash from the server for encrypting data
+      * Creates a hash from the server for non decryptable data
       *
-      * @param encrypt - A string to encrypt
+      * @param text - A string to encrypt
       *
       * @returns A string hash or null if an error has occured
       *
@@ -180,7 +189,61 @@ export declare class UswagonCoreService implements OnDestroy {
       * }
       *
     **/
-    hash(encrypt: string): Promise<any>;
+    hash(text: string): Promise<any>;
+    /**
+      * Encrypts a text
+      *
+      * @param text - A string to encrypt
+      *
+      * @returns A string an encrypted text or null if an error has occured
+      *
+      * @example
+      * const encrypted = this.API.encrypt('ken');
+      * if(encrypt){
+      *  console.log(encrypt);
+      * }else{
+      *  console.log('ERROR');
+      * }
+      *
+    **/
+    encrypt(text: string): Promise<any>;
+    /**
+      * Decrypt an encrypted text in the server to get plain text
+      *
+      * @param encrypted - A string to encrypt
+      *
+      * @returns A string the plain text of an encrypted text or null if an error has occured
+      *
+      * @example
+      * const plainText = this.API.decrypt('Asi12iUSIDUAISDU12');
+      * if(plainText){
+      *  console.log(plainText);
+      * }else{
+      *  console.log('ERROR');
+      * }
+      *
+    **/
+    decrypt(encrypted: string): Promise<any>;
+    /**
+      * Checks if a value matches a hash
+      *
+      * @param text - A string to check
+      *
+      * @param hash - A hash string to check
+      *
+      * @returns - True if text and hash matches, false otherwise
+      *
+      * @example
+      * const match = this.API.verifyHash('text','$2aasdkk2.123i123ijasudfklajsdla');
+      * if(match == null){
+      *  console.log('ERROR');
+       * return;
+      * }
+      *
+      * console.log(match);
+      *
+    **/
+    verifyHash(text: string, hash: string): Promise<any>;
     /**
        * Creates a unique identifier with the length of 32
        *
@@ -305,7 +368,7 @@ export declare class UswagonCoreService implements OnDestroy {
       * Uploads a file to the server
       *
       * @param file - A File to upload
-      * @param filename - A string with points to where the file to be stored
+      * @param filename - A string that points to where the file to be stored in the server
       * @param chunkSize - A number representing the number of bytes to upload per chunk
       *
       * @example
