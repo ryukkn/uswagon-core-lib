@@ -48,19 +48,18 @@ export declare class UswagonCoreService implements OnDestroy {
       * @param handler - Websocket messages are passed to this handler
       *
       * @example
-      * this.API.addLiveListener('event-1',(message:MessageEvent)=>{
-      *  var decodedMessage = new TextDecoder('utf-8').decode(message.data);
-      *  const data = JSON.parse(decodedMessage);
-      *
+      * this.API.addLiveListener('event-1',(message:{[key:string]:any})=>{
       *  OUTPUT:
       *  // same as the json sent from socketSend(data)
       *  // logics are applied here so that messages are only received on specific clients
-      *  console.log(data);
+      *  console.log(message);
       * })
       *
       *
     **/
-    addSocketListener(id: string, handler: (message: MessageEvent) => void): void;
+    addSocketListener(id: string, handler: (message: {
+        [key: string]: any;
+    }) => void): void;
     /**
        * Get list of live listeners in the project
        *

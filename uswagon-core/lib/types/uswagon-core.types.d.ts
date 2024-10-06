@@ -4,6 +4,7 @@ export interface CoreConfig {
     socket: string;
     server: string;
     apiKey: string;
+    app: string;
 }
 export interface SnackbarCoreFeedback {
     type: 'success' | 'error' | 'neutral' | 'warning';

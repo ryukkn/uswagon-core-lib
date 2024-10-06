@@ -45,8 +45,12 @@ class UswagonCoreService {
         this.socket = new WebSocket(config.socket);
         this.socket.binaryType = 'arraybuffer';
         this.socket.onmessage = (message) => {
+            var decodedMessage = new TextDecoder('utf-8').decode(message.data);
+            const socketData = JSON.parse(decodedMessage);
+            if (socketData.app != config.app)
+                return;
             for (const id in this.liveEvents) {
-                this.liveEvents[id](message);
+                this.liveEvents[id](socketData.data);
             }
         };
     }
@@ -57,14 +61,11 @@ class UswagonCoreService {
       * @param handler - Websocket messages are passed to this handler
       *
       * @example
-      * this.API.addLiveListener('event-1',(message:MessageEvent)=>{
-      *  var decodedMessage = new TextDecoder('utf-8').decode(message.data);
-      *  const data = JSON.parse(decodedMessage);
-      *
+      * this.API.addLiveListener('event-1',(message:{[key:string]:any})=>{
       *  OUTPUT:
       *  // same as the json sent from socketSend(data)
       *  // logics are applied here so that messages are only received on specific clients
-      *  console.log(data);
+      *  console.log(message);
       * })
       *
       *
@@ -291,6 +292,7 @@ class UswagonCoreService {
         const salt = new Date().getTime();
         return this.http.post(this.config?.api + '?' + salt, JSON.stringify(Object.assign({
             API_KEY: this.config?.apiKey,
+            App: this.config?.app,
             Method: method,
         }, body)), { headers });
     }
@@ -479,6 +481,7 @@ class UswagonCoreService {
                     this.http
                         .post(this.config?.nodeserver + '/filehandler-progress', {
                         key: this.config?.apiKey,
+                        app: this.config?.app,
                         method: 'create_url',
                         chunk: base64String,
                         fileName: 'files/' + filename,
