@@ -130,15 +130,9 @@ class UswagonAuthService {
        * OUTPUT: role of user if authenticated, null if unauthenticated
      **/
     accountLoggedIn() {
-        if (this.config == undefined) {
-            alert('Config must be initialized, try service.initialize(config)');
-        }
         return this.usedStorage.getItem('logged_in');
     }
     logout() {
-        if (this.config == undefined) {
-            alert('Config must be initialized, try service.initialize(config)');
-        }
         if (!this.accountLoggedIn()) {
             return;
         }
@@ -376,9 +370,6 @@ class UswagonAuthService {
         });
     }
     getUser() {
-        if (this.config == undefined) {
-            alert('Config must be initialized, try service.initialize(config)');
-        }
         const user = this.usedStorage.getItem('user_info');
         if (user != null) {
             return JSON.parse(user);
@@ -388,9 +379,6 @@ class UswagonAuthService {
         }
     }
     redirect() {
-        if (this.config == undefined) {
-            alert('Config must be initialized, try service.initialize(config)');
-        }
         const role = this.getUser()?.role;
         if (this.config?.redirect[role] != undefined) {
             this.router.navigate([this.config?.redirect[role]]);
