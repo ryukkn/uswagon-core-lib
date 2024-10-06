@@ -341,9 +341,9 @@ class UswagonAuthService {
             };
             if (data.success) {
                 const user = data.output;
-                this.usedStorage.setItem('logged_in', user.role);
-                this.usedStorage.setItem('user_info', JSON.stringify(user));
                 setTimeout(() => {
+                    this.usedStorage.setItem('logged_in', user.role);
+                    this.usedStorage.setItem('user_info', JSON.stringify(user));
                     this.router.navigate([this.config?.redirect[user.role]]);
                 }, 2000);
             }
