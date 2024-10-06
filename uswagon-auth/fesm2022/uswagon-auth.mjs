@@ -330,7 +330,6 @@ class UswagonAuthService {
             tables: this.config.loginTable,
             identifierTypes: this.authForm['identifier'].aliases
         }).subscribe((data) => {
-            this.loading = false;
             this.snackbarFeedback = undefined;
             this.snackbarFeedback = data.success ? {
                 type: 'success',
@@ -346,6 +345,7 @@ class UswagonAuthService {
                     this.usedStorage.setItem('logged_in', user.role);
                     this.usedStorage.setItem('user_info', JSON.stringify(user));
                     this.router.navigate([this.config?.redirect[user.role]]);
+                    this.loading = false;
                 }, 2000);
             }
             else {
@@ -354,6 +354,7 @@ class UswagonAuthService {
                     type: 'error',
                     message: data.output
                 };
+                this.loading = false;
             }
         });
     }
