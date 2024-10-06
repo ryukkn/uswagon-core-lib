@@ -377,7 +377,7 @@ export declare class UswagonCoreService implements OnDestroy {
       *  return this.API.uploadProgress
       * }
       *
-      * await this.API.uploadFile(somefile, '/files/profile.png');
+      * await this.API.uploadFile(somefile, 'files/profile.png');
       *
       * OUTPUT:
       * <div>{{getUploadProgress()}}<div> // dynamically updates the progress
