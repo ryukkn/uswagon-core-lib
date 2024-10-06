@@ -109,7 +109,7 @@ class UswagonCoreService {
             alert('Config must be initialized, try service.initialize(config)');
         }
         this.socket.onopen = () => {
-            this.socket.send(JSON.stringify({ key: this.config?.apiKey, data: data }));
+            this.socket.send(JSON.stringify({ key: this.config?.apiKey, app: this.config?.app, data: data }));
         };
     }
     ngOnDestroy() {
