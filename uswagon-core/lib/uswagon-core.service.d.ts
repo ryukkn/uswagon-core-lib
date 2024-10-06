@@ -33,6 +33,7 @@ export declare class UswagonCoreService implements OnDestroy {
     coreForm: CoreForm;
     private socket?;
     private config?;
+    private timeout;
     private liveEvents;
     constructor(http: HttpClient, router: Router);
     /**

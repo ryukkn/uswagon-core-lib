@@ -11,6 +11,7 @@ export declare class UswagonAuthService {
     private config;
     private authForm;
     private emailNotification;
+    private timeout;
     private validators;
     constructor(http: HttpClient, router: Router);
     /**

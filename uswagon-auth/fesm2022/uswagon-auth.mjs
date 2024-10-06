@@ -342,12 +342,15 @@ class UswagonAuthService {
             if (data.success) {
                 const user = data.output;
                 // add delay
-                setTimeout(() => {
+                if (this.timeout) {
+                    clearTimeout(this.timeout);
+                }
+                this.timeout = setTimeout(() => {
                     this.usedStorage.setItem('logged_in', user.role);
                     this.usedStorage.setItem('user_info', JSON.stringify(user));
                     this.router.navigate([this.config?.redirect[user.role]]);
                     this.loading = false;
-                }, 2000);
+                }, this.config?.loginTimeout ?? 1500);
             }
             else {
                 // alert(data.output)

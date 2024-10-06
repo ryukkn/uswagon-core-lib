@@ -203,8 +203,11 @@ class UswagonCoreService {
             message: message,
         };
         if (timer != undefined) {
+            if (this.timeout) {
+                clearTimeout(this.timeout);
+            }
             // Set a timer to reset the snackbar feedback after 2 seconds
-            setTimeout(() => {
+            this.timeout = setTimeout(() => {
                 this.coreFeedback = undefined;
             }, timer);
         }
