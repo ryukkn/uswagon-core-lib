@@ -341,6 +341,13 @@ class UswagonAuthService {
             };
             if (data.success) {
                 const user = data.output;
+                if (this.config?.redirect[user.role] == undefined) {
+                    this.snackbarFeedback = {
+                        type: 'error',
+                        message: "This user is not authorized."
+                    };
+                    this.loading = false;
+                }
                 // add delay
                 if (this.timeout) {
                     clearTimeout(this.timeout);
