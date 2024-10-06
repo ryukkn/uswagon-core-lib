@@ -178,15 +178,12 @@ export declare class UswagonCoreService implements OnDestroy {
       *
       * @param text - A string to encrypt
       *
-      * @returns A string hash or null if an error has occured
+      * @returns A string hash or throws an error if an error has occured
       *
       * @example
       * const hash = this.API.hash('ken');
-      * if(hash){
-      *  console.log(hash);
-      * }else{
-      *  console.log('ERROR');
-      * }
+      *
+      * console.log(hash);
       *
     **/
     hash(text: string): Promise<any>;
@@ -195,15 +192,12 @@ export declare class UswagonCoreService implements OnDestroy {
       *
       * @param text - A string to encrypt
       *
-      * @returns A string an encrypted text or null if an error has occured
+      * @returns A string an encrypted text or throws an error if an error has occured
       *
       * @example
       * const encrypted = this.API.encrypt('ken');
-      * if(encrypt){
-      *  console.log(encrypt);
-      * }else{
-      *  console.log('ERROR');
-      * }
+      *
+      * console.log(encrypted);
       *
     **/
     encrypt(text: string): Promise<any>;
@@ -212,15 +206,12 @@ export declare class UswagonCoreService implements OnDestroy {
       *
       * @param encrypted - A string to encrypt
       *
-      * @returns A string the plain text of an encrypted text or null if an error has occured
+      * @returns A string the plain text of an encrypted text or or throws an error if an error has occured
       *
       * @example
       * const plainText = this.API.decrypt('Asi12iUSIDUAISDU12');
-      * if(plainText){
-      *  console.log(plainText);
-      * }else{
-      *  console.log('ERROR');
-      * }
+      *
+      * console.log(plainText);
       *
     **/
     decrypt(encrypted: string): Promise<any>;
@@ -231,14 +222,10 @@ export declare class UswagonCoreService implements OnDestroy {
       *
       * @param hash - A hash string to check
       *
-      * @returns - True if text and hash matches, false otherwise
+      * @returns - True if text and hash matches, false otherwise. Throws an error if an error has occurred.
       *
       * @example
       * const match = this.API.verifyHash('text','$2aasdkk2.123i123ijasudfklajsdla');
-      * if(match == null){
-      *  console.log('ERROR');
-       * return;
-      * }
       *
       * console.log(match);
       *

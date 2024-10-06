@@ -234,15 +234,12 @@ class UswagonCoreService {
       *
       * @param text - A string to encrypt
       *
-      * @returns A string hash or null if an error has occured
+      * @returns A string hash or throws an error if an error has occured
       *
       * @example
       * const hash = this.API.hash('ken');
-      * if(hash){
-      *  console.log(hash);
-      * }else{
-      *  console.log('ERROR');
-      * }
+      *
+      * console.log(hash);
       *
     **/
     async hash(text) {
@@ -251,7 +248,7 @@ class UswagonCoreService {
             return response.output;
         }
         else {
-            return null;
+            throw new Error('Unable to hash: Server Error');
         }
     }
     /**
@@ -259,15 +256,12 @@ class UswagonCoreService {
       *
       * @param text - A string to encrypt
       *
-      * @returns A string an encrypted text or null if an error has occured
+      * @returns A string an encrypted text or throws an error if an error has occured
       *
       * @example
       * const encrypted = this.API.encrypt('ken');
-      * if(encrypt){
-      *  console.log(encrypt);
-      * }else{
-      *  console.log('ERROR');
-      * }
+      *
+      * console.log(encrypted);
       *
     **/
     async encrypt(text) {
@@ -276,7 +270,7 @@ class UswagonCoreService {
             return response.output;
         }
         else {
-            return null;
+            throw new Error('Unable to encrypt: Server Error');
         }
     }
     /**
@@ -284,15 +278,12 @@ class UswagonCoreService {
       *
       * @param encrypted - A string to encrypt
       *
-      * @returns A string the plain text of an encrypted text or null if an error has occured
+      * @returns A string the plain text of an encrypted text or or throws an error if an error has occured
       *
       * @example
       * const plainText = this.API.decrypt('Asi12iUSIDUAISDU12');
-      * if(plainText){
-      *  console.log(plainText);
-      * }else{
-      *  console.log('ERROR');
-      * }
+      *
+      * console.log(plainText);
       *
     **/
     async decrypt(encrypted) {
@@ -301,7 +292,7 @@ class UswagonCoreService {
             return response.output;
         }
         else {
-            return null;
+            throw new Error('Unable to decrypt hash: Server Error');
         }
     }
     /**
@@ -311,14 +302,10 @@ class UswagonCoreService {
       *
       * @param hash - A hash string to check
       *
-      * @returns - True if text and hash matches, false otherwise
+      * @returns - True if text and hash matches, false otherwise. Throws an error if an error has occurred.
       *
       * @example
       * const match = this.API.verifyHash('text','$2aasdkk2.123i123ijasudfklajsdla');
-      * if(match == null){
-      *  console.log('ERROR');
-       * return;
-      * }
       *
       * console.log(match);
       *
@@ -329,7 +316,7 @@ class UswagonCoreService {
             return response.output;
         }
         else {
-            return null;
+            throw new Error('Unable to verify hash: Server Error');
         }
     }
     /**
