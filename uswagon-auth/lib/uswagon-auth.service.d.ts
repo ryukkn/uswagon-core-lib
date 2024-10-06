@@ -21,6 +21,7 @@ export declare class UswagonAuthService {
        * this.auth.initialize({
        *  api:environment.api,
        *  apiKey: environment.apiKey,
+       *  app: 'test-app',
        *  registrationTable: 'teachers', // can be undefined login
        *  loginTable: ['teachers', 'administrators', 'students']
        *  redirect:{

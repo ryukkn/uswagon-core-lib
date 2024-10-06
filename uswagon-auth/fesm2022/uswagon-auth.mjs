@@ -48,6 +48,7 @@ class UswagonAuthService {
        * this.auth.initialize({
        *  api:environment.api,
        *  apiKey: environment.apiKey,
+       *  app: 'test-app',
        *  registrationTable: 'teachers', // can be undefined login
        *  loginTable: ['teachers', 'administrators', 'students']
        *  redirect:{
@@ -185,6 +186,7 @@ class UswagonAuthService {
         return this.http.post(this.config?.api + '?' + salt, JSON.stringify(Object.assign({
             API_KEY: this.config?.apiKey,
             Method: method,
+            App: this.config?.app
         }, body)), { headers });
     }
     async hash(encrypt) {

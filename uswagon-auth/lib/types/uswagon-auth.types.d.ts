@@ -34,6 +34,7 @@ export interface AuthConfig {
     redirect: AuthRedirect;
     visibleID?: string;
     authMessages?: AuthMessages;
+    app: string;
 }
 interface AuthValidatorConfig {
     pattern: string;

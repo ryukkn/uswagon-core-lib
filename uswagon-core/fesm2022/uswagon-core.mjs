@@ -556,13 +556,13 @@ class UswagonCoreService {
                 const reader = new FileReader();
                 reader.onloadend = () => {
                     const base64String = reader.result.split(',')[1];
-                    this.http
+                    const $sub = this.http
                         .post(this.config?.nodeserver + '/filehandler-progress', {
                         key: this.config?.apiKey,
                         app: this.config?.app,
                         method: 'create_url',
                         chunk: base64String,
-                        fileName: `${this.config?.app}/` + filename,
+                        fileName: filename,
                         chunkIndex: chunkIndex,
                         totalChunks: totalChunks,
                     })
@@ -577,10 +577,12 @@ class UswagonCoreService {
                             else {
                                 // console.log(`File upload complete: ${filename}`);
                                 this.uploadProgress = undefined;
+                                $sub.unsubscribe();
                                 resolve(); // Resolve the promise when the upload is complete
                             }
                         },
                         error: (err) => {
+                            $sub.unsubscribe();
                             // console.error('Error uploading chunk', err);
                             reject(err); // Reject the promise on error
                         },
@@ -592,6 +594,16 @@ class UswagonCoreService {
             uploadChunk(0);
         });
     }
+    async disposeFile(filename) {
+        await firstValueFrom(this.http
+            .post(this.config?.nodeserver + '/filehandler-progress', {
+            key: this.config?.apiKey,
+            app: this.config?.app,
+            method: 'delete_url',
+            fileName: filename,
+        }));
+    }
+    ;
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonCoreService, deps: [{ token: i1.HttpClient }, { token: i2.Router }], target: i0.ɵɵFactoryTarget.Injectable }); }
     static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonCoreService, providedIn: 'root' }); }
 }

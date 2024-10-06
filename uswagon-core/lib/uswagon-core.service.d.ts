@@ -383,6 +383,7 @@ export declare class UswagonCoreService implements OnDestroy {
       * <div>{{getUploadProgress()}}<div> // dynamically updates the progress
     **/
     uploadFile(file: File, filename: string, chunkSize?: number): Promise<void>;
+    disposeFile(filename: string): Promise<void>;
     static ɵfac: i0.ɵɵFactoryDeclaration<UswagonCoreService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<UswagonCoreService>;
 }
