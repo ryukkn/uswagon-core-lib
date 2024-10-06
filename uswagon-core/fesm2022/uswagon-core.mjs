@@ -120,7 +120,7 @@ class UswagonCoreService {
             throw new TypeError('Input must be a string');
         }
         // Escape single quotes by replacing them with two single quotes
-        return input.replace(/'/g, "''");
+        return input.replace(/'/g, "''").trim();
     }
     /**
        * Builds a CoreForm from user input
@@ -131,7 +131,7 @@ class UswagonCoreService {
        * @example
        *
        * handleInput(key: string, value: string){
-       *  this.API.handleFormValue('email', event.target.value); // key should be initialized using createForm()
+       *  this.API.handleFormValue('email', event.target.value); // key should be initialized using initializeForm()
        * }
        *
        * OUTPUT:
@@ -161,7 +161,7 @@ class UswagonCoreService {
     **/
     getFormValue(key) {
         if (this.publicForm[key] === undefined) {
-            alert('Please initialize the form using createForm([form])');
+            alert('Please initialize the form using initializeForm([...fields])');
         }
         return this.publicForm[key];
     }
@@ -171,14 +171,14 @@ class UswagonCoreService {
        * @param keys - A list of strings representing form keys
        *
        * @example
-       * this.API.createForm(['email']);
+       * this.API.initializeForm(['email']);
        *
        * OUTPUT:
        * console.log(this.API.coreForm);
        *
        *
      **/
-    createForm(keys) {
+    initializeForm(keys) {
         this.publicForm = keys.reduce((prev, curr) => {
             return Object.assign(prev, { [curr]: '' });
         }, {});
@@ -194,7 +194,7 @@ class UswagonCoreService {
        *
        * @example
        *
-       * this.API.sendFeedback('succes', 'Pushed data!')
+       * this.API.sendFeedback('success', 'Pushed data!')
        *
      **/
     sendFeedback(type, message, timer) {

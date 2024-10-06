@@ -104,7 +104,7 @@ export declare class UswagonCoreService implements OnDestroy {
        * @example
        *
        * handleInput(key: string, value: string){
-       *  this.API.handleFormValue('email', event.target.value); // key should be initialized using createForm()
+       *  this.API.handleFormValue('email', event.target.value); // key should be initialized using initializeForm()
        * }
        *
        * OUTPUT:
@@ -136,14 +136,14 @@ export declare class UswagonCoreService implements OnDestroy {
        * @param keys - A list of strings representing form keys
        *
        * @example
-       * this.API.createForm(['email']);
+       * this.API.initializeForm(['email']);
        *
        * OUTPUT:
        * console.log(this.API.coreForm);
        *
        *
      **/
-    createForm(keys: string[]): void;
+    initializeForm(keys: string[]): void;
     /**
        * Creates a hash from the server for encrypting data
        *
@@ -151,7 +151,7 @@ export declare class UswagonCoreService implements OnDestroy {
        *
        * @example
        *
-       * this.API.sendFeedback('succes', 'Pushed data!')
+       * this.API.sendFeedback('success', 'Pushed data!')
        *
      **/
     sendFeedback(type: 'success' | 'error' | 'neutral' | 'warning', message: string, timer?: number): void;
