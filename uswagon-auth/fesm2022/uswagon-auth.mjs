@@ -319,6 +319,7 @@ class UswagonAuthService {
             return;
         }
         this.loading = true;
+        this.snackbarFeedback = undefined;
         this.snackbarFeedback = {
             'type': 'neutral',
             'message': 'Loading...',
@@ -555,8 +556,11 @@ class UswagonAuthSnackbarContainerComponent {
     getSnackbarFeedback() {
         const feedback = this.API.snackbarFeedback;
         if (feedback !== undefined && (!this.isInfinite && !feedback.isInfinite)) {
+            if (this.timeout) {
+                clearTimeout(this.timeout);
+            }
             // Set a timer to reset the snackbar feedback after 2 seconds
-            setTimeout(() => {
+            this.timeout = setTimeout(() => {
                 this.API.snackbarFeedback = undefined;
             }, this.timer);
         }

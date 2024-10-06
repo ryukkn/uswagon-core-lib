@@ -9,6 +9,7 @@ export declare class UswagonAuthSnackbarContainerComponent {
     timer: number;
     isInfinite: boolean;
     constructor(API: UswagonAuthService);
+    timeout: any;
     getSnackbarFeedback(): import("uswagon-auth").SnackbarFeedback | undefined;
     static ɵfac: i0.ɵɵFactoryDeclaration<UswagonAuthSnackbarContainerComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<UswagonAuthSnackbarContainerComponent, "uswagon-auth-snackbar-container", never, { "class": { "alias": "class"; "required": false; }; "errorClass": { "alias": "errorClass"; "required": false; }; "successClass": { "alias": "successClass"; "required": false; }; "hiddenClass": { "alias": "hiddenClass"; "required": false; }; "timer": { "alias": "timer"; "required": false; }; "isInfinite": { "alias": "isInfinite"; "required": false; }; }, {}, never, ["*"], false, never>;
