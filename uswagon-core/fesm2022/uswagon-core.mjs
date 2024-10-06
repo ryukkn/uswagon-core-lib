@@ -187,6 +187,48 @@ class UswagonCoreService {
     }
     // UTILITIES
     /**
+       * Creates a hash from the server for encrypting data
+       *
+       * @param encrypt - A string to encrypt
+       *
+       * @example
+       *
+       * this.API.sendFeedback('succes', 'Pushed data!')
+       *
+     **/
+    sendFeedback(type, message, timer) {
+        this.coreFeedback = {
+            type: type,
+            message: message,
+        };
+        if (timer != undefined) {
+            // Set a timer to reset the snackbar feedback after 2 seconds
+            setTimeout(() => {
+                this.coreFeedback = undefined;
+            }, timer);
+        }
+    }
+    /**
+       * Store API feedback for snackbars and other display feedback
+       *
+       * @returns - A feedback object with {type, message}
+       *
+       * @example
+       *
+       * getFeedback(){
+       *   return this.API.getFeedback();
+       * }
+       *
+       * OUTPUT:
+       *  // Snackbars in app.component.ts (root)
+       *  <div class='snackbar' *ngIf='getFeedback().type != undefined'> Some Feedback </div>
+       *
+       *
+     **/
+    getFeedback() {
+        return this.coreFeedback;
+    }
+    /**
       * Creates a hash from the server for encrypting data
       *
       * @param encrypt - A string to encrypt

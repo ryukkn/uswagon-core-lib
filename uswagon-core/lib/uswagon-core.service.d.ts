@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { CoreConfig, CoreCreateObject, CoreDeleteObject, CoreForm, CoreReadObject, CoreResponse, CoreUpdateObject } from './types/uswagon-core.types';
+import { CoreConfig, CoreCreateObject, CoreDeleteObject, CoreForm, CoreReadObject, CoreResponse, CoreUpdateObject, SnackbarCoreFeedback } from './types/uswagon-core.types';
 import * as i0 from "@angular/core";
 export declare class UswagonCoreService implements OnDestroy {
     private http;
     private router;
     uploadProgress?: number;
+    private coreFeedback?;
     private publicForm;
     /**
       * Secure form for storing more secure input
@@ -135,6 +136,35 @@ export declare class UswagonCoreService implements OnDestroy {
        *
      **/
     createForm(keys: string[]): void;
+    /**
+       * Creates a hash from the server for encrypting data
+       *
+       * @param encrypt - A string to encrypt
+       *
+       * @example
+       *
+       * this.API.sendFeedback('succes', 'Pushed data!')
+       *
+     **/
+    sendFeedback(type: 'success' | 'error' | 'neutral' | 'warning', message: string, timer?: number): void;
+    /**
+       * Store API feedback for snackbars and other display feedback
+       *
+       * @returns - A feedback object with {type, message}
+       *
+       * @example
+       *
+       * getFeedback(){
+       *   return this.API.getFeedback();
+       * }
+       *
+       * OUTPUT:
+       *  // Snackbars in app.component.ts (root)
+       *  <div class='snackbar' *ngIf='getFeedback().type != undefined'> Some Feedback </div>
+       *
+       *
+     **/
+    getFeedback(): SnackbarCoreFeedback | undefined;
     /**
       * Creates a hash from the server for encrypting data
       *

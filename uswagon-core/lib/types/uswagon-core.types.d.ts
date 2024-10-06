@@ -5,6 +5,10 @@ export interface CoreConfig {
     server: string;
     apiKey: string;
 }
+export interface SnackbarCoreFeedback {
+    type: 'success' | 'error' | 'neutral' | 'warning';
+    message: string;
+}
 export interface CoreForm {
     [key: string]: string;
 }
