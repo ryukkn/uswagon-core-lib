@@ -130,9 +130,15 @@ class UswagonAuthService {
        * OUTPUT: role of user if authenticated, null if unauthenticated
      **/
     accountLoggedIn() {
+        if (this.config == undefined) {
+            alert('Config must be initialized, try service.initialize(config)');
+        }
         return this.usedStorage.getItem('logged_in');
     }
     logout() {
+        if (this.config == undefined) {
+            alert('Config must be initialized, try service.initialize(config)');
+        }
         if (!this.accountLoggedIn()) {
             return;
         }
@@ -368,6 +374,27 @@ class UswagonAuthService {
                 this.loading = false;
             }
         });
+    }
+    getUser() {
+        if (this.config == undefined) {
+            alert('Config must be initialized, try service.initialize(config)');
+        }
+        const user = this.usedStorage.getItem('user_info');
+        if (user != null) {
+            return JSON.parse(user);
+        }
+        else {
+            return null;
+        }
+    }
+    redirect() {
+        if (this.config == undefined) {
+            alert('Config must be initialized, try service.initialize(config)');
+        }
+        const role = this.getUser()?.role;
+        if (this.config?.redirect[role] != undefined) {
+            this.router.navigate([this.config?.redirect[role]]);
+        }
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonAuthService, deps: [{ token: i1.HttpClient }, { token: i2.Router }], target: i0.ɵɵFactoryTarget.Injectable }); }
     static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonAuthService, providedIn: 'root' }); }
