@@ -341,6 +341,7 @@ class UswagonAuthService {
             };
             if (data.success) {
                 const user = data.output;
+                // add delay
                 setTimeout(() => {
                     this.usedStorage.setItem('logged_in', user.role);
                     this.usedStorage.setItem('user_info', JSON.stringify(user));
