@@ -6,9 +6,9 @@ export declare class UswagonAuthService {
     private http;
     private router;
     snackbarFeedback?: SnackbarFeedback;
+    loading: boolean;
     private usedStorage;
     private config;
-    private loading;
     private authForm;
     private emailNotification;
     private validators;

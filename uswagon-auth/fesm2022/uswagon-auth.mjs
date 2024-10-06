@@ -9,8 +9,8 @@ class UswagonAuthService {
     constructor(http, router) {
         this.http = http;
         this.router = router;
-        this.usedStorage = this.isLocalStorage() ? localStorage : sessionStorage;
         this.loading = false;
+        this.usedStorage = this.isLocalStorage() ? localStorage : sessionStorage;
         this.authForm = {};
         this.emailNotification = false;
         this.validators = {
@@ -343,7 +343,9 @@ class UswagonAuthService {
                 const user = data.output;
                 this.usedStorage.setItem('logged_in', user.role);
                 this.usedStorage.setItem('user_info', JSON.stringify(user));
-                this.router.navigate([this.config?.redirect[user.role]]);
+                setTimeout(() => {
+                    this.router.navigate([this.config?.redirect[user.role]]);
+                }, 2000);
             }
             else {
                 // alert(data.output)
@@ -372,12 +374,15 @@ class UswagonLoginButtonComponent {
     login() {
         this.API.login();
     }
+    isLoading() {
+        return this.API.loading;
+    }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonLoginButtonComponent, deps: [{ token: UswagonAuthService }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.3.12", type: UswagonLoginButtonComponent, selector: "uswagon-login-button", inputs: { class: "class" }, ngImport: i0, template: "<button [class]=\"class + ' uswagon-login-button'\" (click)=\"login()\">\n    <ng-content></ng-content>\n</button>\n\n", styles: [""] }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.3.12", type: UswagonLoginButtonComponent, selector: "uswagon-login-button", inputs: { class: "class" }, ngImport: i0, template: "<button [disabled]=\"isLoading()\" [class]=\"class + ' uswagon-login-button'\" (click)=\"login()\">\n    <ng-content></ng-content>\n</button>\n\n", styles: [""] }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonLoginButtonComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'uswagon-login-button', template: "<button [class]=\"class + ' uswagon-login-button'\" (click)=\"login()\">\n    <ng-content></ng-content>\n</button>\n\n" }]
+            args: [{ selector: 'uswagon-login-button', template: "<button [disabled]=\"isLoading()\" [class]=\"class + ' uswagon-login-button'\" (click)=\"login()\">\n    <ng-content></ng-content>\n</button>\n\n" }]
         }], ctorParameters: () => [{ type: UswagonAuthService }], propDecorators: { class: [{
                 type: Input
             }] } });
@@ -495,12 +500,15 @@ class UswagonRegisterButtonComponent {
     register() {
         this.API.register();
     }
+    isLoading() {
+        return this.API.loading;
+    }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonRegisterButtonComponent, deps: [{ token: UswagonAuthService }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.3.12", type: UswagonRegisterButtonComponent, selector: "uswagon-register-button", inputs: { class: "class" }, ngImport: i0, template: "<button [class]=\"class\" (click)=\"register()\">\n    <ng-content></ng-content>\n</button>", styles: [""] }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.3.12", type: UswagonRegisterButtonComponent, selector: "uswagon-register-button", inputs: { class: "class" }, ngImport: i0, template: "<button [disabled]=\"isLoading()\" [class]=\"class\" (click)=\"register()\">\n    <ng-content></ng-content>\n</button>", styles: [""] }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonRegisterButtonComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'uswagon-register-button', template: "<button [class]=\"class\" (click)=\"register()\">\n    <ng-content></ng-content>\n</button>" }]
+            args: [{ selector: 'uswagon-register-button', template: "<button [disabled]=\"isLoading()\" [class]=\"class\" (click)=\"register()\">\n    <ng-content></ng-content>\n</button>" }]
         }], ctorParameters: () => [{ type: UswagonAuthService }], propDecorators: { class: [{
                 type: Input
             }] } });
