@@ -344,7 +344,7 @@ class UswagonAuthService {
                 this.router.navigate([this.config?.redirect[user.role]]);
             }
             else {
-                alert(data.output);
+                // alert(data.output)
                 this.snackbarFeedback = {
                     type: 'error',
                     message: data.output
