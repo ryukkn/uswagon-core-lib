@@ -62,7 +62,6 @@ export declare class UswagonAuthService {
     closeSnackbar(): void;
     login(): import("rxjs").Subscription | undefined;
     getUser(): any;
-    redirect(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<UswagonAuthService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<UswagonAuthService>;
 }

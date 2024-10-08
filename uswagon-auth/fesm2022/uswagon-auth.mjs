@@ -378,12 +378,6 @@ class UswagonAuthService {
             return null;
         }
     }
-    redirect() {
-        const role = this.getUser()?.role;
-        if (this.config?.redirect[role] != undefined) {
-            this.router.navigate([this.config?.redirect[role]]);
-        }
-    }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonAuthService, deps: [{ token: i1.HttpClient }, { token: i2.Router }], target: i0.ɵɵFactoryTarget.Injectable }); }
     static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonAuthService, providedIn: 'root' }); }
 }
