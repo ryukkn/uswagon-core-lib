@@ -71,7 +71,7 @@ class UswagonCoreService {
       * @param handler - Websocket messages are passed to this handler
       *
       * @example
-      * this.API.addLiveListener('event-1',(message:{[key:string]:any})=>{
+      * this.API.addLiveListener('event-1',(message)=>{
       *  OUTPUT:
       *  // same as the json sent from socketSend(data)
       *  // logics are applied here so that messages are only received on specific clients
@@ -532,7 +532,7 @@ class UswagonCoreService {
             return;
         }
         if (file) {
-            if (file.includes('http'))
+            if (file.includes('http://') || file.includes('https://'))
                 return file;
             return this.config?.server + `/${this.config.app}/` + file;
         }
