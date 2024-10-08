@@ -16,6 +16,16 @@ export declare class UswagonCoreService implements OnDestroy {
       *
     **/
     uploadProgress?: number;
+    /**
+      * Get loading status of the API
+      *
+      * @example
+      * getUploadProgress(){
+      *  return this.API.isLoading;
+      * }
+      *
+    **/
+    isLoading: boolean;
     private coreFeedback?;
     private publicForm;
     /**
@@ -145,6 +155,19 @@ export declare class UswagonCoreService implements OnDestroy {
        *
      **/
     initializeForm(keys: string[]): void;
+    /**
+       * Mark the status of the API as loading
+       *
+       * @param isLoading - A boolean indicating whether the API is loading
+       *
+       * @example
+       *
+       * this.API.setLoading(true)
+       *
+       * console.log(this.API.isLoading);
+       *
+     **/
+    setLoading(isLoading: boolean): void;
     /**
        * Creates a hash from the server for encrypting data
        *

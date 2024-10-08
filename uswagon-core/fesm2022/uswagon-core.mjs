@@ -9,6 +9,16 @@ class UswagonCoreService {
     constructor(http, router) {
         this.http = http;
         this.router = router;
+        /**
+          * Get loading status of the API
+          *
+          * @example
+          * getUploadProgress(){
+          *  return this.API.isLoading;
+          * }
+          *
+        **/
+        this.isLoading = false;
         this.publicForm = {};
         /**
           * Secure form for storing more secure input
@@ -187,6 +197,21 @@ class UswagonCoreService {
         }, {});
     }
     // UTILITIES
+    /**
+       * Mark the status of the API as loading
+       *
+       * @param isLoading - A boolean indicating whether the API is loading
+       *
+       * @example
+       *
+       * this.API.setLoading(true)
+       *
+       * console.log(this.API.isLoading);
+       *
+     **/
+    setLoading(isLoading) {
+        this.isLoading = isLoading;
+    }
     /**
        * Creates a hash from the server for encrypting data
        *

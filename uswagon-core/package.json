@@ -1,6 +1,6 @@
 {
   "name": "uswagon-core",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "peerDependencies": {
     "@angular/common": "^17.3.10",
     "@angular/core": "^17.3.10"
