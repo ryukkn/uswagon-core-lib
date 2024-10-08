@@ -374,7 +374,9 @@ class UswagonCoreService {
         for (var [key, obj] of Object.entries(body)) {
             if (key == 'values') {
                 for (var [field, value] of Object.entries(obj)) {
-                    obj[field] = value ?? '';
+                    if (value == null || value == undefined) {
+                        delete obj[field];
+                    }
                 }
             }
         }
