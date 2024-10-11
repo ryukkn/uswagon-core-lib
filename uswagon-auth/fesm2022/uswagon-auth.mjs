@@ -167,14 +167,32 @@ class UswagonAuthService {
     useSessionStorage() {
         localStorage.setItem('storage', 'session');
     }
-    post(method, body) {
+    async encryptRequest(plaintext) {
+        const keyString = 'AHS8576598PIOUNA214842780309mpqbH';
+        const key = new TextEncoder().encode(keyString.slice(0, 32)); // Use only the first 32 characters for AES-256
+        const iv = crypto.getRandomValues(new Uint8Array(16)); // Generate random IV (16 bytes for AES)
+        // Import the key
+        const cryptoKey = await crypto.subtle.importKey('raw', key, { name: 'AES-CBC' }, false, ['encrypt']);
+        // Encrypt the plaintext
+        const encodedPlaintext = new TextEncoder().encode(plaintext);
+        const ciphertext = await crypto.subtle.encrypt({ name: 'AES-CBC', iv: iv }, cryptoKey, encodedPlaintext);
+        // Combine IV and ciphertext, then encode to base64
+        const combined = new Uint8Array(iv.byteLength + ciphertext.byteLength);
+        combined.set(iv, 0);
+        combined.set(new Uint8Array(ciphertext), iv.byteLength);
+        // Convert to base64
+        return btoa(String.fromCharCode(...combined));
+    }
+    async post(method, body) {
         if (this.config == undefined) {
             alert('Config must be initialized, try service.initialize(config)');
         }
         for (var [key, obj] of Object.entries(body)) {
             if (key == 'values') {
                 for (var [field, value] of Object.entries(obj)) {
-                    obj[field] = value ?? '';
+                    if (value == null || value == undefined) {
+                        delete obj[field];
+                    }
                 }
             }
         }
@@ -183,28 +201,30 @@ class UswagonAuthService {
             'Content-Type': 'application/json',
         });
         const salt = new Date().getTime();
-        return this.http.post(this.config?.api + '?' + salt, JSON.stringify(Object.assign({
+        const jsonString = JSON.stringify(Object.assign({
             API_KEY: this.config?.apiKey,
+            App: this.config?.app,
             Method: method,
-            App: this.config?.app
-        }, body)), { headers });
+        }, body));
+        const encrypted = await this.encryptRequest(jsonString);
+        return await firstValueFrom(this.http.post(this.config?.api + '?' + salt, encrypted, { headers }));
     }
     async hash(encrypt) {
-        const response = await firstValueFrom(this.post('get_hash', { encrypt: encrypt }));
+        const response = await this.post('get_hash', { encrypt: encrypt });
         if (response.success) {
             return response.output;
         }
         else {
-            return null;
+            throw new Error('Server Error');
         }
     }
     async checkDuplicates(tables, values) {
-        const response = await firstValueFrom(this.post('check_duplicates', { 'tables': tables, 'values': values }));
+        const response = await this.post('check_duplicates', { 'tables': tables, 'values': values });
         if (response.success) {
             return response.output;
         }
         else {
-            return null;
+            throw new Error('Server Error');
         }
     }
     async register() {
@@ -269,7 +289,7 @@ class UswagonAuthService {
             values[field] = value;
         }
         const postObject = Object.assign(visID != null ? { visibleid: visID } : {}, this.config.verification ? { verified: false } : {}, { accountType: this.config.registrationTable }, values);
-        this.post('register', { data: JSON.stringify(postObject) }).subscribe((data) => {
+        this.post('register', { data: JSON.stringify(postObject) }).then((data) => {
             this.loading = false;
             this.snackbarFeedback = undefined;
             if (data.success) {
@@ -330,7 +350,7 @@ class UswagonAuthService {
             password: this.authForm['password'].value,
             tables: this.config.loginTable,
             identifierTypes: this.authForm['identifier'].aliases
-        }).subscribe((data) => {
+        }).then((data) => {
             this.snackbarFeedback = undefined;
             this.snackbarFeedback = data.success ? {
                 type: 'success',

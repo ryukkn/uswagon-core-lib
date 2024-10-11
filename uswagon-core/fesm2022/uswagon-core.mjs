@@ -271,12 +271,12 @@ class UswagonCoreService {
       *
     **/
     async hash(text) {
-        const response = await firstValueFrom(this.post('get_hash', { text: text }));
+        const response = await this.post('get_hash', { text: text });
         if (response.success) {
             return response.output;
         }
         else {
-            throw new Error('Unable to hash: Server Error');
+            throw new Error('Server Error');
         }
     }
     /**
@@ -293,12 +293,12 @@ class UswagonCoreService {
       *
     **/
     async encrypt(text) {
-        const response = await firstValueFrom(this.post('encrypt', { text: text }));
+        const response = await this.post('encrypt', { text: text });
         if (response.success) {
             return response.output;
         }
         else {
-            throw new Error('Unable to encrypt: Server Error');
+            throw new Error('Server Error');
         }
     }
     /**
@@ -315,12 +315,12 @@ class UswagonCoreService {
       *
     **/
     async decrypt(encrypted) {
-        const response = await firstValueFrom(this.post('decrypt', { encrypted: encrypted }));
+        const response = await this.post('decrypt', { encrypted: encrypted });
         if (response.success) {
             return response.output;
         }
         else {
-            throw new Error('Unable to decrypt hash: Server Error');
+            throw new Error('Server Error');
         }
     }
     /**
@@ -339,12 +339,12 @@ class UswagonCoreService {
       *
     **/
     async verifyHash(text, hash) {
-        const response = await firstValueFrom(this.post('verify_hash', { text: text, hash: hash }));
+        const response = await this.post('verify_hash', { text: text, hash: hash });
         if (response.success) {
             return response.output;
         }
         else {
-            throw new Error('Unable to verify hash: Server Error');
+            throw new Error('Server Error');
         }
     }
     /**
@@ -367,7 +367,23 @@ class UswagonCoreService {
         });
         return timestamp + randomPart.slice(0, 16); // Combine timestamp with random part
     }
-    post(method, body) {
+    async encryptRequest(plaintext) {
+        const keyString = 'AHS8576598PIOUNA214842780309mpqbH';
+        const key = new TextEncoder().encode(keyString.slice(0, 32)); // Use only the first 32 characters for AES-256
+        const iv = crypto.getRandomValues(new Uint8Array(16)); // Generate random IV (16 bytes for AES)
+        // Import the key
+        const cryptoKey = await crypto.subtle.importKey('raw', key, { name: 'AES-CBC' }, false, ['encrypt']);
+        // Encrypt the plaintext
+        const encodedPlaintext = new TextEncoder().encode(plaintext);
+        const ciphertext = await crypto.subtle.encrypt({ name: 'AES-CBC', iv: iv }, cryptoKey, encodedPlaintext);
+        // Combine IV and ciphertext, then encode to base64
+        const combined = new Uint8Array(iv.byteLength + ciphertext.byteLength);
+        combined.set(iv, 0);
+        combined.set(new Uint8Array(ciphertext), iv.byteLength);
+        // Convert to base64
+        return btoa(String.fromCharCode(...combined));
+    }
+    async post(method, body) {
         if (this.config == undefined) {
             alert('Config must be initialized, try service.initialize(config)');
         }
@@ -385,11 +401,13 @@ class UswagonCoreService {
             'Content-Type': 'application/json',
         });
         const salt = new Date().getTime();
-        return this.http.post(this.config?.api + '?' + salt, JSON.stringify(Object.assign({
+        const jsonString = JSON.stringify(Object.assign({
             API_KEY: this.config?.apiKey,
             App: this.config?.app,
             Method: method,
-        }, body)), { headers });
+        }, body));
+        const encrypted = await this.encryptRequest(jsonString);
+        return await firstValueFrom(this.http.post(this.config?.api + '?' + salt, encrypted, { headers }));
     }
     // CREATE READ UPDATE AND DELETE HANDLERS
     /**
@@ -418,9 +436,9 @@ class UswagonCoreService {
         if (this.config == undefined) {
             alert('Config must be initialized, try service.initialize(config)');
         }
-        return await firstValueFrom(this.post('create_entry', {
+        return await this.post('create_entry', {
             'data': JSON.stringify(postObject),
-        }));
+        });
     }
     /**
        * Runs an read query to the server.
@@ -454,9 +472,9 @@ class UswagonCoreService {
         if (this.config == undefined) {
             alert('Config must be initialized, try service.initialize(config)');
         }
-        return await firstValueFrom(this.post('get_entries', {
+        return await this.post('get_entries', {
             'data': JSON.stringify(postObject),
-        }));
+        });
     }
     /**
       * Runs an update query to the server.
@@ -485,9 +503,9 @@ class UswagonCoreService {
         if (this.config == undefined) {
             alert('Config must be initialized, try service.initialize(config)');
         }
-        return firstValueFrom(this.post('update_entry', {
+        return await this.post('update_entry', {
             'data': JSON.stringify(postObject),
-        }));
+        });
     }
     /**
        * Runs an delete query to the server.
@@ -510,9 +528,9 @@ class UswagonCoreService {
         if (this.config == undefined) {
             alert('Config must be initialized, try service.initialize(config)');
         }
-        return await firstValueFrom(this.post('delete_entry', {
+        return await this.post('delete_entry', {
             data: JSON.stringify(postObject),
-        }));
+        });
     }
     // FILE HANDLERS
     /**

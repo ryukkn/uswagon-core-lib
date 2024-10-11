@@ -264,7 +264,8 @@ export declare class UswagonCoreService implements OnDestroy {
        *
      **/
     createUniqueID32(): string;
-    private post;
+    private encryptRequest;
+    post(method: string, body: {}): Promise<any>;
     /**
        * Runs an insert query to the server.
        *

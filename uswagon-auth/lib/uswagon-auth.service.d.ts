@@ -53,14 +53,15 @@ export declare class UswagonAuthService {
     getSavedEmail(): string | null;
     useLocalStorage(): void;
     useSessionStorage(): void;
-    post(method: string, body: {}): import("rxjs").Observable<any>;
+    private encryptRequest;
+    post(method: string, body: {}): Promise<any>;
     hash(encrypt: string): Promise<any>;
     checkDuplicates(tables: string[], values: {
         [key: string]: string;
     }): Promise<any>;
     register(): Promise<void>;
     closeSnackbar(): void;
-    login(): import("rxjs").Subscription | undefined;
+    login(): Promise<void> | undefined;
     getUser(): any;
     static ɵfac: i0.ɵɵFactoryDeclaration<UswagonAuthService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<UswagonAuthService>;
