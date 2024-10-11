@@ -16,16 +16,17 @@ export declare class UswagonCoreService implements OnDestroy {
       *
     **/
     uploadProgress?: number;
+    private loadingSubject;
     /**
       * Get loading status of the API
       *
       * @example
-      * getUploadProgress(){
-      *  return this.API.isLoading;
-      * }
+      * this.API.isLoading$.subscribe(loading => {
+      *  this.loading = loading;
+      * })
       *
     **/
-    isLoading: boolean;
+    isLoading$: import("rxjs").Observable<boolean>;
     private coreFeedback?;
     private publicForm;
     /**

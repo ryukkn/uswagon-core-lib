@@ -2,23 +2,24 @@ import * as i1 from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import * as i0 from '@angular/core';
 import { Injectable } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
+import { BehaviorSubject, firstValueFrom } from 'rxjs';
 import * as i2 from '@angular/router';
 
 class UswagonCoreService {
     constructor(http, router) {
         this.http = http;
         this.router = router;
+        this.loadingSubject = new BehaviorSubject(false);
         /**
           * Get loading status of the API
           *
           * @example
-          * getUploadProgress(){
-          *  return this.API.isLoading;
-          * }
+          * this.API.isLoading$.subscribe(loading => {
+          *  this.loading = loading;
+          * })
           *
         **/
-        this.isLoading = false;
+        this.isLoading$ = this.loadingSubject.asObservable();
         this.publicForm = {};
         /**
           * Secure form for storing more secure input
@@ -210,7 +211,7 @@ class UswagonCoreService {
        *
      **/
     setLoading(isLoading) {
-        this.isLoading = isLoading;
+        this.loadingSubject.next(isLoading);
     }
     /**
        * Creates a hash from the server for encrypting data
