@@ -5,6 +5,7 @@ export interface CoreConfig {
     server: string;
     apiKey: string;
     app: string;
+    loaderDelay?: number;
 }
 export interface SnackbarCoreFeedback {
     type: 'success' | 'error' | 'neutral' | 'warning';

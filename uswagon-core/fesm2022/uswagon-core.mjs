@@ -35,6 +35,7 @@ class UswagonCoreService {
         **/
         this.coreForm = {};
         this.liveEvents = {};
+        this.loaderDelay = 3000;
     }
     // INITIALIZATION
     /**
@@ -53,6 +54,9 @@ class UswagonCoreService {
      **/
     initialize(config) {
         this.config = config;
+        if (this.config.loaderDelay != undefined) {
+            this.loaderDelay = this.config.loaderDelay;
+        }
         this.socket = new WebSocket(config.socket);
         this.socket.binaryType = 'arraybuffer';
         this.socket.onmessage = (message) => {
@@ -209,14 +213,14 @@ class UswagonCoreService {
        * console.log(this.API.isLoading);
        *
      **/
-    setLoading(isLoading, timeout = 2000) {
+    setLoading(isLoading) {
         if (this.loadingTimeout) {
             clearTimeout(this.loadingTimeout);
         }
         if (!isLoading) {
             this.loadingTimeout = setTimeout(() => {
                 this.loadingSubject.next(isLoading);
-            }, timeout);
+            }, this.loaderDelay);
         }
         this.loadingSubject.next(isLoading);
     }

@@ -46,6 +46,7 @@ export declare class UswagonCoreService implements OnDestroy {
     private config?;
     private timeout;
     private liveEvents;
+    private loaderDelay;
     constructor(http: HttpClient, router: Router);
     /**
        * Initializes the service for the project
@@ -167,7 +168,7 @@ export declare class UswagonCoreService implements OnDestroy {
        * console.log(this.API.isLoading);
        *
      **/
-    setLoading(isLoading: boolean, timeout?: number): void;
+    setLoading(isLoading: boolean): void;
     /**
        * Creates a hash from the server for encrypting data
        *
