@@ -197,7 +197,6 @@ class UswagonCoreService {
             return Object.assign(prev, { [curr]: '' });
         }, {});
     }
-    // UTILITIES
     /**
        * Mark the status of the API as loading
        *
@@ -210,8 +209,15 @@ class UswagonCoreService {
        * console.log(this.API.isLoading);
        *
      **/
-    setLoading(isLoading) {
-        this.loadingSubject.next(isLoading);
+    setLoading(isLoading, timeout = 2000) {
+        if (this.loadingTimeout) {
+            clearTimeout(this.loadingTimeout);
+        }
+        if (!isLoading) {
+            this.loadingTimeout = setTimeout(() => {
+                this.loadingSubject.next(isLoading);
+            }, timeout);
+        }
     }
     /**
        * Creates a hash from the server for encrypting data

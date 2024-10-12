@@ -154,6 +154,7 @@ export declare class UswagonCoreService implements OnDestroy {
        *
      **/
     initializeForm(keys: string[]): void;
+    private loadingTimeout;
     /**
        * Mark the status of the API as loading
        *
@@ -166,7 +167,7 @@ export declare class UswagonCoreService implements OnDestroy {
        * console.log(this.API.isLoading);
        *
      **/
-    setLoading(isLoading: boolean): void;
+    setLoading(isLoading: boolean, timeout?: number): void;
     /**
        * Creates a hash from the server for encrypting data
        *
