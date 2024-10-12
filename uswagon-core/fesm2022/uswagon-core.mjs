@@ -222,7 +222,9 @@ class UswagonCoreService {
                 this.loadingSubject.next(isLoading);
             }, this.loaderDelay);
         }
-        this.loadingSubject.next(isLoading);
+        else {
+            this.loadingSubject.next(isLoading);
+        }
     }
     /**
        * Creates a hash from the server for encrypting data
