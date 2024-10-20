@@ -241,22 +241,24 @@ class UswagonCoreService {
      **/
     sendFeedback(type, message, timer) {
         if (this.coreFeedback.length >= 3) {
-            clearTimeout(this.coreFeedback[0].timeout);
             this.coreFeedback.splice(0, 1);
         }
-        this.coreFeedback.push({
+        const feedback = {
+            id: this.createUniqueID32(),
             type: type,
             message: message,
-            timeout: null,
-        });
-        const index = this.coreFeedback.length - 1;
+        };
         if (timer != undefined) {
             // Set a timer to reset the snackbar feedback after 2 seconds
-            this.coreFeedback[index].timeout = setTimeout(() => {
+            feedback.timeout = setTimeout(() => {
                 // this.coreFeedback[index] = undefined;
-                this.coreFeedback.splice(index, 1);
+                const index = this.coreFeedback.findIndex(feedback => feedback.id == feedback.id);
+                if (index >= 0) {
+                    this.coreFeedback.splice(index, 1);
+                }
             }, timer);
         }
+        this.coreFeedback.push(feedback);
     }
     /**
        * Closes a feedback

@@ -8,9 +8,10 @@ export interface CoreConfig {
     loaderDelay?: number;
 }
 export interface SnackbarCoreFeedback {
+    id: string;
     type: 'success' | 'error' | 'neutral' | 'warning';
     message: string;
-    timeout: any;
+    timeout?: any;
 }
 export interface CoreForm {
     [key: string]: string;
