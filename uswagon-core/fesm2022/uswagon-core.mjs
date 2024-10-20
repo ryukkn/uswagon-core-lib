@@ -240,16 +240,16 @@ class UswagonCoreService {
        *
      **/
     sendFeedback(type, message, timer) {
-        if (this.coreFeedback.length > 3) {
+        if (this.coreFeedback.length >= 3) {
             clearTimeout(this.coreFeedback[0].timeout);
-            this.coreFeedback.shift();
+            this.coreFeedback.splice(0, 1);
         }
-        const index = this.coreFeedback.length;
         this.coreFeedback.push({
             type: type,
             message: message,
             timeout: null,
         });
+        const index = this.coreFeedback.length - 1;
         if (timer != undefined) {
             // Set a timer to reset the snackbar feedback after 2 seconds
             this.coreFeedback[index].timeout = setTimeout(() => {
