@@ -20,6 +20,7 @@ class UswagonCoreService {
           *
         **/
         this.isLoading$ = this.loadingSubject.asObservable();
+        this.coreFeedback = [];
         this.publicForm = {};
         /**
           * Secure form for storing more secure input
@@ -227,60 +228,68 @@ class UswagonCoreService {
     /**
        * Creates a hash from the server for encrypting data
        *
-       * @param encrypt - A string to encrypt
+       * @param type - a type of feedback message to send
+       *
+       * @param message - a string containing the message to send
+       *
+       * @param timer - a number representing the delay for the feedback to close
        *
        * @example
        *
-       * this.API.sendFeedback('success', 'Pushed data!')
+       * this.API.sendFeedback('success', 'Pushed data!', 5000)
        *
      **/
     sendFeedback(type, message, timer) {
-        this.coreFeedback = undefined;
-        this.coreFeedback = {
+        if (this.coreFeedback.length > 3) {
+            clearTimeout(this.coreFeedback[0].timeout);
+            this.coreFeedback.shift();
+        }
+        const index = this.coreFeedback.length;
+        this.coreFeedback.push({
             type: type,
             message: message,
-        };
+            timeout: null,
+        });
         if (timer != undefined) {
-            if (this.timeout) {
-                clearTimeout(this.timeout);
-            }
             // Set a timer to reset the snackbar feedback after 2 seconds
-            this.timeout = setTimeout(() => {
-                this.coreFeedback = undefined;
+            this.coreFeedback[index].timeout = setTimeout(() => {
+                // this.coreFeedback[index] = undefined;
+                this.coreFeedback.splice(index, 1);
             }, timer);
         }
     }
     /**
-       * Creates a hash from the server for encrypting data
+       * Closes a feedback
        *
-       * @param encrypt - A string to encrypt
+       * @param index - A number representing the index of feedback to close
        *
        * @example
        *
        * this.API.sendFeedback('success', 'Pushed data!')
        *
      **/
-    closeFeedback() {
-        this.coreFeedback = undefined;
+    closeFeedback(index) {
+        clearTimeout(this.coreFeedback[index].timeout);
+        this.coreFeedback.splice(index, 1);
     }
     /**
        * Store API feedback for snackbars and other display feedback
        *
-       * @returns - A feedback object with {type, message}
+       * @returns - A list of feedback objects with {type, message}
        *
        * @example
        *
-       * getFeedback(){
-       *   return this.API.getFeedback();
+       * getFeedbacks(){
+       *   return this.API.getFeedbacks();
        * }
        *
        * OUTPUT:
        *  // Snackbars in app.component.ts (root)
-       *  <div class='snackbar' *ngIf='getFeedback().type != undefined'> Some Feedback </div>
+       *  <div class='snackbar' *ngFor='let feedback of getFeedbacks()'> {{feedback.message}} </div>
        *
        *
      **/
-    getFeedback() {
+    getFeedbacks() {
         return this.coreFeedback;
     }
     /**

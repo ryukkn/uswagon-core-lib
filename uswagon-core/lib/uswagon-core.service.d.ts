@@ -27,7 +27,7 @@ export declare class UswagonCoreService implements OnDestroy {
       *
     **/
     isLoading$: import("rxjs").Observable<boolean>;
-    private coreFeedback?;
+    private coreFeedback;
     private publicForm;
     /**
       * Secure form for storing more secure input
@@ -172,43 +172,47 @@ export declare class UswagonCoreService implements OnDestroy {
     /**
        * Creates a hash from the server for encrypting data
        *
-       * @param encrypt - A string to encrypt
+       * @param type - a type of feedback message to send
+       *
+       * @param message - a string containing the message to send
+       *
+       * @param timer - a number representing the delay for the feedback to close
        *
        * @example
        *
-       * this.API.sendFeedback('success', 'Pushed data!')
+       * this.API.sendFeedback('success', 'Pushed data!', 5000)
        *
      **/
     sendFeedback(type: 'success' | 'error' | 'neutral' | 'warning', message: string, timer?: number): void;
     /**
-       * Creates a hash from the server for encrypting data
+       * Closes a feedback
        *
-       * @param encrypt - A string to encrypt
+       * @param index - A number representing the index of feedback to close
        *
        * @example
        *
        * this.API.sendFeedback('success', 'Pushed data!')
        *
      **/
-    closeFeedback(): void;
+    closeFeedback(index: number): void;
     /**
        * Store API feedback for snackbars and other display feedback
        *
-       * @returns - A feedback object with {type, message}
+       * @returns - A list of feedback objects with {type, message}
        *
        * @example
        *
-       * getFeedback(){
-       *   return this.API.getFeedback();
+       * getFeedbacks(){
+       *   return this.API.getFeedbacks();
        * }
        *
        * OUTPUT:
        *  // Snackbars in app.component.ts (root)
-       *  <div class='snackbar' *ngIf='getFeedback().type != undefined'> Some Feedback </div>
+       *  <div class='snackbar' *ngFor='let feedback of getFeedbacks()'> {{feedback.message}} </div>
        *
        *
      **/
-    getFeedback(): SnackbarCoreFeedback | undefined;
+    getFeedbacks(): SnackbarCoreFeedback[];
     /**
       * Creates a hash from the server for non decryptable data
       *

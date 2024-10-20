@@ -10,6 +10,7 @@ export interface CoreConfig {
 export interface SnackbarCoreFeedback {
     type: 'success' | 'error' | 'neutral' | 'warning';
     message: string;
+    timeout: any;
 }
 export interface CoreForm {
     [key: string]: string;
