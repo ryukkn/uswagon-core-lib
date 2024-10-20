@@ -235,6 +235,7 @@ class UswagonCoreService {
        *
      **/
     sendFeedback(type, message, timer) {
+        this.coreFeedback = undefined;
         this.coreFeedback = {
             type: type,
             message: message,
