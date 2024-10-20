@@ -181,6 +181,17 @@ export declare class UswagonCoreService implements OnDestroy {
      **/
     sendFeedback(type: 'success' | 'error' | 'neutral' | 'warning', message: string, timer?: number): void;
     /**
+       * Creates a hash from the server for encrypting data
+       *
+       * @param encrypt - A string to encrypt
+       *
+       * @example
+       *
+       * this.API.sendFeedback('success', 'Pushed data!')
+       *
+     **/
+    closeFeedback(): void;
+    /**
        * Store API feedback for snackbars and other display feedback
        *
        * @returns - A feedback object with {type, message}

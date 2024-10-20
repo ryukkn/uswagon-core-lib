@@ -251,6 +251,19 @@ class UswagonCoreService {
         }
     }
     /**
+       * Creates a hash from the server for encrypting data
+       *
+       * @param encrypt - A string to encrypt
+       *
+       * @example
+       *
+       * this.API.sendFeedback('success', 'Pushed data!')
+       *
+     **/
+    closeFeedback() {
+        this.coreFeedback = undefined;
+    }
+    /**
        * Store API feedback for snackbars and other display feedback
        *
        * @returns - A feedback object with {type, message}
