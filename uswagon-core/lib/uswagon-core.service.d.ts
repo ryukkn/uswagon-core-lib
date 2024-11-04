@@ -63,6 +63,7 @@ export declare class UswagonCoreService implements OnDestroy {
        *
      **/
     initialize(config: CoreConfig): void;
+    private connectToSocket;
     /**
       * Add a new live listener from the server's websocket
       *

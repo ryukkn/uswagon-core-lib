@@ -58,6 +58,9 @@ class UswagonCoreService {
         if (this.config.loaderDelay != undefined) {
             this.loaderDelay = this.config.loaderDelay;
         }
+        this.connectToSocket(config);
+    }
+    connectToSocket(config) {
         this.socket = new WebSocket(config.socket);
         this.socket.binaryType = 'arraybuffer';
         this.socket.onmessage = (message) => {
@@ -68,6 +71,10 @@ class UswagonCoreService {
             for (const id in this.liveEvents) {
                 this.liveEvents[id](socketData.data);
             }
+        };
+        this.socket.onclose = () => {
+            console.log('Reconnecting to socket...');
+            this.connectToSocket(config);
         };
     }
     /**
