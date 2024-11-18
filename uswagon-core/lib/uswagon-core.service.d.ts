@@ -4,9 +4,6 @@ import { Router } from '@angular/router';
 import { CoreConfig, CoreCreateObject, CoreDeleteObject, CoreForm, CoreReadObject, CoreResponse, CoreUpdateObject, SnackbarCoreFeedback } from './types/uswagon-core.types';
 import * as i0 from "@angular/core";
 export declare class UswagonCoreService implements OnDestroy {
-    get(endpoint: string) {
-      throw new Error('Method not implemented.');
-    }
     private http;
     private router;
     /**

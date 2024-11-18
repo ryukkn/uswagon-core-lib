@@ -625,6 +625,10 @@ class UswagonCoreService {
             alert("Please initialize uswagon core on root app.component.ts");
             return new Promise(() => { return null; });
         }
+        const headers = new HttpHeaders({
+            'X-Requested-With': 'XMLHttpRequest',
+            'Content-Type': 'application/json',
+        });
         return new Promise((resolve, reject) => {
             const totalChunks = Math.ceil(file.size / chunkSize);
             let uploadedChunks = 0; // Track uploaded chunks
@@ -644,7 +648,7 @@ class UswagonCoreService {
                         fileName: filename,
                         chunkIndex: chunkIndex,
                         totalChunks: totalChunks,
-                    })
+                    }, { headers })
                         .subscribe({
                         next: () => {
                             uploadedChunks++;
@@ -674,13 +678,17 @@ class UswagonCoreService {
         });
     }
     async disposeFile(filename) {
+        const headers = new HttpHeaders({
+            'X-Requested-With': 'XMLHttpRequest',
+            'Content-Type': 'application/json',
+        });
         await firstValueFrom(this.http
             .post(this.config?.nodeserver + '/filehandler-progress', {
             key: this.config?.apiKey,
             app: this.config?.app,
             method: 'delete_url',
             fileName: filename,
-        }));
+        }, { headers }));
     }
     ;
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonCoreService, deps: [{ token: i1.HttpClient }, { token: i2.Router }], target: i0.ɵɵFactoryTarget.Injectable }); }
