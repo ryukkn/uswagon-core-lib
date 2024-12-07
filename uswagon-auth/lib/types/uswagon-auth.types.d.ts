@@ -27,7 +27,7 @@ export interface AuthForm {
 }
 export interface AuthConfig {
     api: string;
-    authType: 'jwt' | 'default';
+    authType?: 'jwt' | 'default';
     apiKey: string;
     verification?: boolean;
     loginTable: string[];
