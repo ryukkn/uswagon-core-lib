@@ -59,7 +59,7 @@ class UswagonAuthService {
        * })
        *
      **/
-    initialize(config) {
+    async initialize(config) {
         this.config = config;
         if (this.config.authMessages == undefined) {
             this.config.authMessages = {};
@@ -68,9 +68,18 @@ class UswagonAuthService {
         if (!this.config.authType) {
             this.config.authType = 'default';
         }
+        await this.decodeJWT();
         const role = this.accountLoggedIn();
         if (role != null) {
             this.router.navigate([this.config?.redirect[role]]);
+        }
+        else {
+            if (this.refreshInterval) {
+                clearInterval(this.refreshInterval);
+            }
+            this.refreshInterval = setInterval(async () => {
+                await this.refreshJWT();
+            }, (3600 / 2) * 1000);
         }
     }
     validateInputFields() {
@@ -133,12 +142,17 @@ class UswagonAuthService {
        * OUTPUT: role of user if authenticated, null if unauthenticated
      **/
     accountLoggedIn() {
-        return this.usedStorage.getItem('logged_in');
+        if (this.config?.authType == 'default') {
+            this.role = this.usedStorage.getItem('logged_in');
+        }
+        return this.role;
     }
     logout() {
         if (!this.accountLoggedIn()) {
             return;
         }
+        this.role = null;
+        this.user = null;
         this.usedStorage.clear();
         this.snackbarFeedback = undefined;
         this.snackbarFeedback = this.snackbarFeedback = {
@@ -399,15 +413,15 @@ class UswagonAuthService {
         });
     }
     getUser() {
-        const user = this.usedStorage.getItem('user_info');
-        if (user != null) {
-            return JSON.parse(user);
+        if (this.config?.authType == 'default') {
+            const user = this.usedStorage.getItem('user_info');
+            if (user != null) {
+                this.user = JSON.parse(user);
+            }
         }
-        else {
-            return null;
-        }
+        return this.user;
     }
-    async jwtUser() {
+    async decodeJWT() {
         if (!this.config) {
             alert('Config is not initialized');
             return;
@@ -418,14 +432,28 @@ class UswagonAuthService {
                 token: jwtToken
             });
             if (response.success) {
-                return response.output.data;
+                this.user = response.output.data;
+                this.role = this.user.role;
+                await this.refreshJWT();
             }
             else {
                 throw new Error(response.output);
             }
         }
-        else {
-            return null;
+    }
+    async refreshJWT() {
+        if (!this.config) {
+            alert('Config is not initialized');
+            return;
+        }
+        const jwtToken = this.usedStorage.getItem('user_info');
+        if (jwtToken != null) {
+            const response = await this.post('refresh', {
+                token: jwtToken
+            });
+            if (!response.success) {
+                throw new Error(response.output);
+            }
         }
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.3.12", ngImport: i0, type: UswagonAuthService, deps: [{ token: i1.HttpClient }, { token: i2.Router }], target: i0.ɵɵFactoryTarget.Injectable }); }

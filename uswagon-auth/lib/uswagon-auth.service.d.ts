@@ -7,11 +7,14 @@ export declare class UswagonAuthService {
     private router;
     snackbarFeedback?: SnackbarFeedback;
     loading: boolean;
+    private refreshInterval;
     private usedStorage;
     private config;
     private authForm;
     private emailNotification;
     private timeout;
+    private user;
+    private role;
     private validators;
     constructor(http: HttpClient, router: Router);
     /**
@@ -33,7 +36,7 @@ export declare class UswagonAuthService {
        * })
        *
      **/
-    initialize(config: AuthConfig): void;
+    initialize(config: AuthConfig): Promise<void>;
     validateInputFields(): boolean;
     clearForm(): void;
     /**
@@ -44,7 +47,7 @@ export declare class UswagonAuthService {
        *
        * OUTPUT: role of user if authenticated, null if unauthenticated
      **/
-    accountLoggedIn(): string | null;
+    accountLoggedIn(): any;
     logout(): void;
     getAuthField(key: string): import("./types/uswagon-auth.types").AuthFormField;
     initializeFormField(key: string, required: boolean, unique: boolean, type: string, aliases?: string[], encrypted?: boolean, validator?: string): void;
@@ -63,7 +66,8 @@ export declare class UswagonAuthService {
     closeSnackbar(): void;
     login(): Promise<void> | undefined;
     getUser(): any;
-    jwtUser(): Promise<any>;
+    decodeJWT(): Promise<void>;
+    refreshJWT(): Promise<void>;
     static ɵfac: i0.ɵɵFactoryDeclaration<UswagonAuthService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<UswagonAuthService>;
 }
