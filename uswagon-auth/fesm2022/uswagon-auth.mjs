@@ -68,18 +68,22 @@ class UswagonAuthService {
         if (!this.config.authType) {
             this.config.authType = 'default';
         }
-        await this.decodeJWT();
+        if (this.config.authType == 'jwt') {
+            await this.decodeJWT();
+        }
         const role = this.accountLoggedIn();
         if (role != null) {
             this.router.navigate([this.config?.redirect[role]]);
         }
         else {
-            if (this.refreshInterval) {
-                clearInterval(this.refreshInterval);
+            if (this.config.authType == 'jwt') {
+                if (this.refreshInterval) {
+                    clearInterval(this.refreshInterval);
+                }
+                this.refreshInterval = setInterval(async () => {
+                    await this.refreshJWT();
+                }, (3600 / 2) * 1000);
             }
-            this.refreshInterval = setInterval(async () => {
-                await this.refreshJWT();
-            }, (3600 / 2) * 1000);
         }
     }
     validateInputFields() {
