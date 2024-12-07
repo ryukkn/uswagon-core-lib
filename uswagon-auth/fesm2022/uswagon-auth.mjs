@@ -378,7 +378,7 @@ class UswagonAuthService {
                 }
                 this.timeout = setTimeout(() => {
                     if (this.config?.authType == 'jwt') {
-                        this.usedStorage.setItem('user_info', user);
+                        this.usedStorage.setItem('user_info', user.token);
                     }
                     else {
                         this.usedStorage.setItem('logged_in', user.role);
