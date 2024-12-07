@@ -84,6 +84,7 @@ class UswagonAuthService {
                     await this.refreshJWT();
                 }, (3600 / 2) * 1000);
             }
+            this.router.navigate([this.config?.redirect[role]]);
         }
     }
     validateInputFields() {
