@@ -65,6 +65,9 @@ class UswagonAuthService {
             this.config.authMessages = {};
         }
         this.authForm = {};
+        if (!this.config.authType) {
+            this.config.authType = 'default';
+        }
         const role = this.accountLoggedIn();
         if (role != null) {
             this.router.navigate([this.config?.redirect[role]]);
@@ -346,6 +349,7 @@ class UswagonAuthService {
             isInfinite: true,
         };
         return this.post('login', {
+            authType: this.config.authType,
             identifierValue: this.authForm['identifier'].value,
             password: this.authForm['password'].value,
             tables: this.config.loginTable,
@@ -373,8 +377,13 @@ class UswagonAuthService {
                     clearTimeout(this.timeout);
                 }
                 this.timeout = setTimeout(() => {
-                    this.usedStorage.setItem('logged_in', user.role);
-                    this.usedStorage.setItem('user_info', JSON.stringify(user));
+                    if (this.config?.authType == 'jwt') {
+                        this.usedStorage.setItem('user_info', user);
+                    }
+                    else {
+                        this.usedStorage.setItem('logged_in', user.role);
+                        this.usedStorage.setItem('user_info', JSON.stringify(user));
+                    }
                     this.router.navigate([this.config?.redirect[user.role]]);
                     this.loading = false;
                 }, this.config?.loginTimeout ?? 1500);
@@ -393,6 +402,27 @@ class UswagonAuthService {
         const user = this.usedStorage.getItem('user_info');
         if (user != null) {
             return JSON.parse(user);
+        }
+        else {
+            return null;
+        }
+    }
+    async jwtUser() {
+        if (!this.config) {
+            alert('Config is not initialized');
+            return;
+        }
+        const jwtToken = this.usedStorage.getItem('user_info');
+        if (jwtToken != null) {
+            const response = await this.post('protected', {
+                token: jwtToken
+            });
+            if (response.success) {
+                return response.output;
+            }
+            else {
+                throw new Error(response.output);
+            }
         }
         else {
             return null;

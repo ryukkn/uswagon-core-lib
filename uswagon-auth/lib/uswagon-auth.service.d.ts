@@ -63,6 +63,7 @@ export declare class UswagonAuthService {
     closeSnackbar(): void;
     login(): Promise<void> | undefined;
     getUser(): any;
+    jwtUser(): Promise<any>;
     static ɵfac: i0.ɵɵFactoryDeclaration<UswagonAuthService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<UswagonAuthService>;
 }
