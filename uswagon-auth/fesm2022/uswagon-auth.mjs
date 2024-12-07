@@ -418,7 +418,7 @@ class UswagonAuthService {
                 token: jwtToken
             });
             if (response.success) {
-                return response.output;
+                return response.output.data;
             }
             else {
                 throw new Error(response.output);
