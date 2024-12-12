@@ -282,6 +282,18 @@ export declare class UswagonCoreService implements OnDestroy {
        *
        *
      **/
+    /**
+       * Get server time in 'Y-m-d H:i:s.u' format
+       *
+       * @returns A string of time in 'Y-m-d H:i:s.u' format or throws an error if an error has occured
+       *
+       * @example
+       * const time = this.API.serverTime();
+       *
+       * console.log(time);
+       *
+     **/
+    serverTime(): Promise<any>;
     createUniqueID32(): string;
     private encryptRequest;
     post(method: string, body: {}): Promise<any>;

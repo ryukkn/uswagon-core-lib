@@ -401,6 +401,26 @@ class UswagonCoreService {
        *
        *
      **/
+    /**
+       * Get server time in 'Y-m-d H:i:s.u' format
+       *
+       * @returns A string of time in 'Y-m-d H:i:s.u' format or throws an error if an error has occured
+       *
+       * @example
+       * const time = this.API.serverTime();
+       *
+       * console.log(time);
+       *
+     **/
+    async serverTime() {
+        const response = await this.post('get-time', {});
+        if (response.success) {
+            return response.output;
+        }
+        else {
+            throw new Error('Server Error');
+        }
+    }
     createUniqueID32() {
         if (this.config == undefined) {
             alert('Config must be initialized, try service.initialize(config)');
